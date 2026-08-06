@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Bruto - Ficha de Rol / Tarjeta Digital</title>
+    <!-- Google Fonts: Black Ops One (título), Barlow (cuerpo) y Barlow Condensed (títulos de sección) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Black+Ops+One&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body class="workshop-background">
+
+    <!-- Resplandores de fondo temáticos (azul policía y verde neón) -->
+    <div class="bg-glow bg-glow-blue"></div>
+    <div class="bg-glow bg-glow-green"></div>
+    <main class="main-container">
+        <!-- Tornillos estructurales del contenedor principal -->
+        <div class="container-screws" aria-hidden="true">
+            <!-- Esquinas principales -->
+            <img src="Tornillo - 1.png" class="c-screw c-screw-tl" alt="">
+            <img src="Tornillo - 2.png" class="c-screw c-screw-tr" alt="">
+            <img src="Tornillo - 3.png" class="c-screw c-screw-bl" alt="">
+            <img src="Tornillo - 4.png" class="c-screw c-screw-br" alt="">
+            
+            <!-- Laterales distribuidos a lo largo del scroll -->
+            <img src="Tornillo - 2.png" class="c-screw c-screw-r1" alt="">
+            <img src="Tornillo - 3.png" class="c-screw c-screw-l2" alt="">
+            <img src="Tornillo - 4.png" class="c-screw c-screw-r2" alt="">
+            <img src="Tornillo - 1.png" class="c-screw c-screw-l3" alt="">
+            <img src="Tornillo - 2.png" class="c-screw c-screw-r3" alt="">
+        </div>
+
+        <!-- SECCIÓN 1: Encabezado y Perfil -->
+        <header class="profile-header">
+            <!-- Elementos decorativos Grunge Punk de fondo -->
+            <div class="header-decorations-bg">
+                <img src="Macha de Aceite.png" class="decor-oil" alt="" aria-hidden="true">
+                <img src="Rasguños de Metal.png" class="decor-scratches" alt="" aria-hidden="true">
+                <div class="decor-label decor-label-danger" aria-hidden="true">DANGER</div>
+                <!-- Imagen de Graffiti de fondo debajo del perfil (Mancha chorreante degradada) -->
+                <img src="grafitti_mancha.png" class="decor-graffiti" alt="" aria-hidden="true">
+            </div>
+
+            <!-- Foto de Cabecera Circular (Galería) -->
+            <div class="profile-photo-container" id="profile-photo" onclick="openGallery()" tabindex="0" role="button"
+                aria-label="Abrir galería de fotos de Bruto">
+                <img src="bruto_pic_1.jpg" alt="Foto de perfil de Bruto" class="profile-photo-img">
+                <div class="profile-photo-hint">Ver fotos (5)</div>
+            </div>
+
+            <h1 class="profile-name">BRUTO</h1>
+            <p class="profile-subtitle">Tu perro de taller<br>de confianza</p>
+
+            <div class="tag-list" style="margin-top: 0.8rem; gap: 0.5rem;">
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Petplayer: Bruto se comporta y juega adoptando el rol de mascota fiel del taller.">Petplayer</span>
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Leatherdog: Su estética preferida incluye collares y arneses pesados de cuero resistente.">Leatherdog</span>
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Ropebunny: Un espíritu libre, enérgico y revoltoso que siempre busca jugar y divertirse.">Ropebunny</span>
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Shibari: Prácticas de ataduras con cuerdas que forman parte de su entrenamiento y límites de juego.">Shibari</span>
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Spankee: Disfruta de las palmadas correctivas de juego en la espalda como recompensa o castigo.">Spankee</span>
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Brat: Bruto puede ser bastante desobediente de manera intencional solo para llamar la atención.">Brat</span>
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Alfasumiso: Muestra una sumisión decidida pero conserva un carácter fuerte y dominante en su manada.">Alfasumiso</span>
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Primal: Conectado con sus instintos más básicos y animales de caza, lucha y juego físico.">Primal</span>
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Sumi: Actitud sumisa y cooperativa frente a comandos firmes de personas en las que confía.">Sumi</span>
+                <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
+                    data-desc="Mas0qu1sta: Tolerancia muy elevada al dolor físico recreativo y juegos de impacto en el taller.">Mas0qu1sta</span>
+            </div>
+        </header>
+
+        <!-- SECCIÓN 2: Presentación y Lore -->
+        <section class="info-section">
+            <img src="Tornillo - 1.png" class="c-screw c-screw-l1" alt="" aria-hidden="true">
+            <h2>Presentación</h2>
+            <p class="bio-text">
+                Retirado de las peleas callejeras clandestinas, Bruto es un viejo perro criollo que va por ahí
+                metiéndose en problemas y saliéndose con la suya. Siempre buscando su próximo rival, disfruta de trabar
+                peleas con sus compinches de la manada y de cazar a los gatos que se le aparecen. Si te lo cruzas, dale
+                un buen tope o una palmada en la espalda y recuérdale que es un perro muy malo y él te responderá con
+                topes.
+            </p>
+            <div class="alert-box">
+                🤝 <strong>Si Bruto te busca pelea:</strong> Quiere ser tu amigo.<br>
+                💤 <strong>Si Bruto no quiere pelear:</strong> Es mejor dejarlo tranquilo.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: El Collar Interactivo (Objeto Equipado) -->
+        <section class="info-section">
+            <h2>Objeto Equipado</h2>
+            <div class="collar-widget" id="collar-widget" onclick="toggleCollar()" tabindex="0" role="button"
+                aria-label="Collar de cuero de Bruto" aria-expanded="true">
+                <div class="collar-icon-container">
+                    <!-- Icono SVG de collar de perro con púas -->
+                    <svg class="collar-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 50,20 A 30,30 0 1,0 50,80 A 30,30 0 1,0 50,20 Z" class="collar-strap" fill="none"
+                            stroke-width="10" />
+                        <rect x="44" y="14" width="12" height="12" rx="2" class="collar-buckle" />
+                        <polygon points="50,10 47,20 53,20" class="collar-spike" />
+                        <polygon points="80,50 70,47 70,53" class="collar-spike" />
+                        <polygon points="50,90 47,80 53,80" class="collar-spike" />
+                        <polygon points="20,50 30,47 30,53" class="collar-spike" />
+                    </svg>
+                </div>
+                <div class="collar-details">
+                    <h3>Collar de Cuero de Bruto</h3>
+                    <p class="collar-desc">Un pesado accesorio metálico. Cambia sus estadísticas e incrementa su poder
+                        de ataque.</p>
+                    <div class="collar-status-wrapper">
+                        <span class="status-label">Estado:</span>
+                        <span class="status-value status-equipped" id="collar-status">EQUIPADO</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: Ficha Pokémon -->
+        <section class="info-section">
+            <h2>Ficha Pokémon</h2>
+            <div class="pokemon-card-layout">
+                <!-- Carta Pokémon Contenedor Real Edge-to-Edge -->
+                <div class="pokemon-card-container" id="bruto-card">
+                    <img src="bruto_adoptado.jpg" alt="Carta Bruto GX - Forma Adoptada"
+                        class="pokemon-card-img card-equipped-img">
+                    <img src="bruto_callejero.jpg" alt="Carta Bruto GX - Forma Callejera"
+                        class="pokemon-card-img card-unequipped-img">
+                </div>
+
+                <!-- Panel de Estadísticas Detalladas con Barras Dinámicas -->
+                <div class="stats-panel" id="stats-panel">
+                    <h3>Ficha Técnica</h3>
+
+                    <!-- Barras de Estadísticas Dinámicas estilo Grunge Punk -->
+                    <div class="stats-bars-container">
+                        <!-- HP -->
+                        <div class="stat-row">
+                            <div class="stat-bar-wrapper">
+                                <span class="stat-icon-badge badge-hp">💀</span>
+                                <div class="stat-progress-track">
+                                    <div class="stat-progress-fill fill-hp" id="fill-hp" style="width: 67.5%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-name">HP</span>
+                                <span class="stat-number" id="lbl-hp">135</span>
+                            </div>
+                        </div>
+                        <!-- ATK -->
+                        <div class="stat-row">
+                            <div class="stat-bar-wrapper">
+                                <span class="stat-icon-badge badge-atk">⚡</span>
+                                <div class="stat-progress-track">
+                                    <div class="stat-progress-fill fill-atk" id="fill-atk" style="width: 78.5%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-name">ATK</span>
+                                <span class="stat-number" id="lbl-atk">157</span>
+                            </div>
+                        </div>
+                        <!-- DEF -->
+                        <div class="stat-row">
+                            <div class="stat-bar-wrapper">
+                                <span class="stat-icon-badge badge-def">🛡️</span>
+                                <div class="stat-progress-track">
+                                    <div class="stat-progress-fill fill-def" id="fill-def" style="width: 60.5%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-name">DEF</span>
+                                <span class="stat-number" id="lbl-def">121</span>
+                            </div>
+                        </div>
+                        <!-- VEL -->
+                        <div class="stat-row">
+                            <div class="stat-bar-wrapper">
+                                <span class="stat-icon-badge badge-spd">💨</span>
+                                <div class="stat-progress-track">
+                                    <div class="stat-progress-fill fill-spd" id="fill-spd" style="width: 16%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-name">VEL</span>
+                                <span class="stat-number" id="lbl-spd">32</span>
+                            </div>
+                        </div>
+                        <!-- S.ATK -->
+                        <div class="stat-row">
+                            <div class="stat-bar-wrapper">
+                                <span class="stat-icon-badge badge-satk">🔥</span>
+                                <div class="stat-progress-track">
+                                    <div class="stat-progress-fill fill-satk" id="fill-satk" style="width: 32.5%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-name">S.ATK</span>
+                                <span class="stat-number" id="lbl-satk">65</span>
+                            </div>
+                        </div>
+                        <!-- S.DEF -->
+                        <div class="stat-row">
+                            <div class="stat-bar-wrapper">
+                                <span class="stat-icon-badge badge-sdef">⚙️</span>
+                                <div class="stat-progress-track">
+                                    <div class="stat-progress-fill fill-sdef" id="fill-sdef" style="width: 35%;"></div>
+                                </div>
+                            </div>
+                            <div class="stat-details">
+                                <span class="stat-name">S.DEF</span>
+                                <span class="stat-number" id="lbl-sdef">70</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-total">
+                        <div class="stat-total-badge">
+                            TOTAL: <span id="stat-val-total">580</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Tarjeta de Habilidad Separada -->
+        <section class="info-section">
+            <div class="ability-card">
+                <h3>Habilidad: Veterano</h3>
+                <p>Cuando sus PS son altos mantiene una defensa férrea. Cuando sus PS bajan, sacrifica defensa para
+                    aumentar enormemente su ataque.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: Preferencias (Likes & Dislikes) -->
+        <section class="info-section">
+            <h2>Preferencias</h2>
+            <div class="pref-interactive-section">
+                <!-- Botón Gustos -->
+                <div class="pref-group pref-group-likes" id="pref-group-likes">
+                    <button class="pref-btn pref-btn-likes" onclick="togglePref('likes')" aria-expanded="false"
+                        aria-controls="content-likes" aria-label="Gustos de Bruto">
+                        👍
+                    </button>
+                    <div class="pref-content" id="content-likes" aria-hidden="true">
+                        <ul>
+                            <li>Trato rudo / fuerte.</li>
+                            <li>Palabras de afirmación fuertes.</li>
+                            <li>Hacer travesuras / maldades.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Botón No le gusta -->
+                <div class="pref-group pref-group-dislikes" id="pref-group-dislikes">
+                    <button class="pref-btn pref-btn-dislikes" onclick="togglePref('dislikes')" aria-expanded="false"
+                        aria-controls="content-dislikes" aria-label="Disgustos de Bruto">
+                        👎
+                    </button>
+                    <div class="pref-content" id="content-dislikes" aria-hidden="true">
+                        <ul>
+                            <li>Gritos.</li>
+                            <li>Trato blando o cuchicheos.</li>
+                            <li>Que le digan "Tierno" o "Bonito".</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 6: Cómo Acercarse -->
+        <section class="info-section">
+            <h2>Cómo Acercarse</h2>
+            <div class="acercarse-card">
+                <p class="bio-text" style="margin: 0;">
+                    Usa una voz de mando firme, no agresiva. Sé frentero y directo: a Bruto le aburre tu miedo.
+                    Muéstrate
+                    disponible y dispuesto para hacer maldades en la manada.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 7: Semáforo de Juego -->
+        <section class="info-section">
+            <h2>Semáforo de Juego</h2>
+            <div class="traffic-light-container">
+                <!-- Verde -->
+                <div class="light-card light-green">
+                    <div class="light-indicator"></div>
+                    <div class="light-content">
+                        <h4>Verde (Libre)</h4>
+                        <p>Luchas, juego de topes, forcejeo, mordidas y abrazos sin problema.</p>
+                    </div>
+                </div>
+                <!-- Amarillo -->
+                <div class="light-card light-yellow">
+                    <div class="light-indicator"></div>
+                    <div class="light-content">
+                        <h4>Amarillo (Confianza / Diálogo previo)</h4>
+                        <p>Shibari, prácticas restrictivas, momificación, spanking, cera de vela (wax), protocolos
+                            altos, primal y medical play.</p>
+                    </div>
+                </div>
+                <!-- Rojo -->
+                <div class="light-card light-red">
+                    <div class="light-indicator"></div>
+                    <div class="light-content">
+                        <h4>Rojo (Límites / Círculo Cerrado)</h4>
+                        <p>Experiencias de carácter erótico, explícitas o sexuales, únicamente compartidas con personas
+                            de mi círculo de confianza y acuerdos claros.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página de marca -->
+    <footer class="main-footer">
+        <p>Ficha de Rol de Bruto</p>
+    </footer>
+
+    <!-- MODAL DE GALERÍA DE FOTOS (LIGHTBOX) -->
+    <div id="gallery-modal" class="gallery-modal" onclick="closeGalleryOnOutsideClick(event)" role="dialog" aria-modal="true" aria-label="Galería de fotos de Bruto">
+        <div class="gallery-modal-content">
+            <button class="gallery-close-btn" onclick="closeGallery()" aria-label="Cerrar galería">&times;</button>
+            <div class="gallery-main-viewport">
+                <div class="gallery-slider" id="gallery-slider">
+                    <img src="bruto_pic_1.jpg" alt="Bruto 1" class="gallery-slide-img">
+                    <img src="bruto_pic_2.jpg" alt="Bruto 2" class="gallery-slide-img">
+                    <img src="bruto_pic_3.jpg" alt="Bruto 3" class="gallery-slide-img">
+                    <img src="bruto_pic_4.jpg" alt="Bruto 4" class="gallery-slide-img">
+                    <img src="bruto_pic_5.jpg" alt="Bruto 5" class="gallery-slide-img">
+                </div>
+                <button class="gallery-nav-btn gallery-nav-prev" onclick="changeSlide(-1)" aria-label="Foto anterior">&lt;</button>
+                <button class="gallery-nav-btn gallery-nav-next" onclick="changeSlide(1)" aria-label="Foto siguiente">&gt;</button>
+            </div>
+
+            <!-- Miniaturas -->
+            <div class="gallery-thumbnails">
+                <button class="gallery-thumb active" onclick="goToSlide(0)" aria-label="Ver miniatura 1 de Bruto"><img src="bruto_pic_1.jpg" alt="Miniatura 1"></button>
+                <button class="gallery-thumb" onclick="goToSlide(1)" aria-label="Ver miniatura 2 de Bruto"><img src="bruto_pic_2.jpg" alt="Miniatura 2"></button>
+                <button class="gallery-thumb" onclick="goToSlide(2)" aria-label="Ver miniatura 3 de Bruto"><img src="bruto_pic_3.jpg" alt="Miniatura 3"></button>
+                <button class="gallery-thumb" onclick="goToSlide(3)" aria-label="Ver miniatura 4 de Bruto"><img src="bruto_pic_4.jpg" alt="Miniatura 4"></button>
+                <button class="gallery-thumb" onclick="goToSlide(4)" aria-label="Ver miniatura 5 de Bruto"><img src="bruto_pic_5.jpg" alt="Miniatura 5"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript para la interactividad de la Ficha de Bruto -->
+    <script>
+        // Registrar Service Worker para soporte offline
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registrado con éxito:', reg.scope))
+                    .catch(err => console.error('Error al registrar Service Worker:', err));
+            });
+        }
+
+        // Prevenir zoom por gestos táctiles (doble toque y pellizco)
+        document.addEventListener('touchstart', (event) => {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+
+        // Estado del collar
+        let collarEquipado = true;
+
+        // Datos de estadísticas para ambos estados
+        const stateEquipped = {
+            hp: 135, atk: 157, def: 121, spd: 32, satk: 65, sdef: 70, total: 580,
+            ratios: [0.675, 0.785, 0.605, 0.16, 0.35, 0.325] // HP, ATK, DEF, VEL, S.DEF, S.ATK
+        };
+        const stateUnequipped = {
+            hp: 95, atk: 117, def: 80, spd: 92, satk: 65, sdef: 70, total: 519,
+            ratios: [0.475, 0.585, 0.40, 0.46, 0.35, 0.325]
+        };
+
+        // Actualizar barras de estadísticas y textos
+        // Actualizar barras de estadísticas y textos
+        function updateStats(state) {
+            document.getElementById('lbl-hp').textContent = state.hp;
+            document.getElementById('lbl-atk').textContent = state.atk;
+            document.getElementById('lbl-def').textContent = state.def;
+            document.getElementById('lbl-spd').textContent = state.spd;
+            document.getElementById('lbl-sdef').textContent = state.sdef;
+            document.getElementById('lbl-satk').textContent = state.satk;
+
+            document.getElementById('fill-hp').style.width = (state.ratios[0] * 100) + '%';
+            document.getElementById('fill-atk').style.width = (state.ratios[1] * 100) + '%';
+            document.getElementById('fill-def').style.width = (state.ratios[2] * 100) + '%';
+            document.getElementById('fill-spd').style.width = (state.ratios[3] * 100) + '%';
+            document.getElementById('fill-sdef').style.width = (state.ratios[4] * 100) + '%';
+            document.getElementById('fill-satk').style.width = (state.ratios[5] * 100) + '%';
+        }
+
+        // Alternar equipamiento del collar
+        function toggleCollar() {
+            collarEquipado = !collarEquipado;
+
+            const widget = document.getElementById('collar-widget');
+            const statusText = document.getElementById('collar-status');
+            const card = document.getElementById('bruto-card');
+            const statsPanel = document.getElementById('stats-panel');
+            const statTotal = document.getElementById('stat-val-total');
+
+            const state = collarEquipado ? stateEquipped : stateUnequipped;
+
+            if (collarEquipado) {
+                widget.classList.remove('unequipped');
+                widget.setAttribute('aria-expanded', 'true');
+                statusText.innerText = 'EQUIPADO';
+                statusText.className = 'status-value status-equipped';
+                card.classList.remove('unequipped');
+                statsPanel.classList.remove('unequipped');
+            } else {
+                widget.classList.add('unequipped');
+                widget.setAttribute('aria-expanded', 'false');
+                statusText.innerText = 'DESEQUIPADO';
+                statusText.className = 'status-value status-unequipped';
+                card.classList.add('unequipped');
+                statsPanel.classList.add('unequipped');
+            }
+
+            statTotal.innerText = state.total;
+            updateStats(state);
+        }
+
+        // --- PREFERENCIAS INTERACTIVAS (GUSTOS & DISGUSTOS) ---
+        function togglePref(type) {
+            const likesGroup = document.getElementById('pref-group-likes');
+            const dislikesGroup = document.getElementById('pref-group-dislikes');
+            const likesContent = document.getElementById('content-likes');
+            const dislikesContent = document.getElementById('content-dislikes');
+
+            if (type === 'likes') {
+                const isActive = likesGroup.classList.contains('active');
+                likesGroup.classList.toggle('active', !isActive);
+                dislikesGroup.classList.remove('active');
+                
+                likesGroup.querySelector('.pref-btn').setAttribute('aria-expanded', !isActive);
+                likesContent.setAttribute('aria-hidden', isActive ? 'true' : 'false');
+                
+                dislikesGroup.querySelector('.pref-btn').setAttribute('aria-expanded', 'false');
+                dislikesContent.setAttribute('aria-hidden', 'true');
+            } else {
+                const isActive = dislikesGroup.classList.contains('active');
+                dislikesGroup.classList.toggle('active', !isActive);
+                likesGroup.classList.remove('active');
+                
+                dislikesGroup.querySelector('.pref-btn').setAttribute('aria-expanded', !isActive);
+                dislikesContent.setAttribute('aria-hidden', isActive ? 'true' : 'false');
+                
+                likesGroup.querySelector('.pref-btn').setAttribute('aria-expanded', 'false');
+                likesContent.setAttribute('aria-hidden', 'true');
+            }
+        }
+
+        // --- GALERÍA DE FOTOS INTERACTIVA (LIGHTBOX) ---
+        let currentSlide = 0;
+        const totalSlides = 5;
+        let lastActiveElement = null;
+
+        function openGallery() {
+            lastActiveElement = document.activeElement; // Guardar el elemento que abrió la galería
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Detener scrolling de la página
+            goToSlide(0);
+
+            // Mover el foco al botón de cerrar
+            const closeBtn = modal.querySelector('.gallery-close-btn');
+            if (closeBtn) closeBtn.focus();
+
+            // Agregar listener de focus trap
+            document.addEventListener('keydown', trapFocus);
+        }
+
+        function closeGallery() {
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restaurar scrolling
+            
+            // Quitar listener de focus trap
+            document.removeEventListener('keydown', trapFocus);
+
+            // Devolver el foco al elemento que activó la galería
+            if (lastActiveElement) {
+                lastActiveElement.focus();
+            }
+        }
+
+        function trapFocus(e) {
+            if (e.key !== 'Tab') return;
+
+            const modal = document.getElementById('gallery-modal');
+            // Obtener todos los elementos interactivos visibles dentro del modal
+            const focusableSelectors = 'button, [tabindex="0"]';
+            const focusableElements = Array.from(modal.querySelectorAll(focusableSelectors))
+                .filter(el => el.offsetWidth > 0 || el.offsetHeight > 0);
+
+            if (focusableElements.length === 0) return;
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) { // Shift + Tab
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else { // Tab
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        }
+
+        function closeGalleryOnOutsideClick(event) {
+            if (event.target.id === 'gallery-modal') {
+                closeGallery();
+            }
+        }
+
+        function changeSlide(direction) {
+            let nextSlide = currentSlide + direction;
+            if (nextSlide >= totalSlides) nextSlide = 0;
+            if (nextSlide < 0) nextSlide = totalSlides - 1;
+            goToSlide(nextSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            const slider = document.getElementById('gallery-slider');
+            slider.style.transform = `translateX(-${index * 20}%)`;
+
+            // Actualizar miniatura activa
+            const thumbs = document.querySelectorAll('.gallery-thumb');
+            thumbs.forEach((thumb, idx) => {
+                if (idx === index) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        // Inicialización y eventos de accesibilidad e interacción
+        window.onload = function () {
+            // Cargar estado inicial
+            updateStats(stateEquipped);
+
+            // Manejo de eventos de teclado en el widget del collar (Accesibilidad)
+            const collarWidget = document.getElementById('collar-widget');
+            collarWidget.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleCollar();
+                }
+            });
+
+            // Manejo de eventos de teclado en la foto de perfil
+            const profilePhoto = document.getElementById('profile-photo');
+            profilePhoto.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openGallery();
+                }
+            });
+
+            // Cerrar galería con la tecla Escape
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closeGallery();
+                }
+            });
+
+            // Manejo de eventos de teclado en los badges (Accesibilidad)
+            document.querySelectorAll('.badge').forEach(badge => {
+                badge.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        showBadgeTooltip(badge);
+                    }
+                });
+            });
+
+            // --- LÓGICA DE TOQUE SOSTENIDO (LONG PRESS) EN ETIQUETAS ---
+            document.querySelectorAll('.badge').forEach(badge => {
+                let pressTimer;
+
+                const startPress = (e) => {
+                    pressTimer = setTimeout(() => {
+                        showBadgeTooltip(badge);
+                    }, 400); // 400ms para considerarlo toque sostenido
+                };
+
+                const cancelPress = () => {
+                    clearTimeout(pressTimer);
+                };
+
+                badge.addEventListener('mousedown', startPress);
+                badge.addEventListener('mouseup', cancelPress);
+                badge.addEventListener('mouseleave', cancelPress);
+
+                badge.addEventListener('touchstart', startPress, { passive: true });
+                badge.addEventListener('touchend', cancelPress);
+                badge.addEventListener('touchcancel', cancelPress);
+
+                badge.addEventListener('click', (e) => {
+                    // Click para abrir en escritorio/móvil convencional
+                    showBadgeTooltip(badge);
+                });
+            });
+        };
+
+        let activeTooltip = null;
+
+        function showBadgeTooltip(badge) {
+            // Cerrar tooltip anterior
+            if (activeTooltip) {
+                activeTooltip.remove();
+                activeTooltip = null;
+            }
+
+            // Quitar clase expandido a todos los badges activos anteriores
+            document.querySelectorAll('.badge').forEach(b => b.classList.remove('badge-expanded'));
+
+            badge.classList.add('badge-expanded');
+
+            const text = badge.getAttribute('data-desc') || "Definición genérica de la etiqueta para Bruto.";
+            const tooltip = document.createElement('div');
+            tooltip.className = 'badge-tooltip';
+            tooltip.innerHTML = `
+                <p>${text}</p>
+                <button class="tooltip-close-btn" onclick="closeTooltip(event)" aria-label="Cerrar descripción">&times;</button>
+            `;
+
+            document.body.appendChild(tooltip);
+
+            // Posicionamiento responsivo del tooltip
+            const rect = badge.getBoundingClientRect();
+            tooltip.style.top = `${rect.bottom + window.scrollY + 8}px`;
+            tooltip.style.left = `${Math.max(10, Math.min(window.innerWidth - 290, rect.left + window.scrollX - 80))}px`;
+
+            activeTooltip = tooltip;
+
+            setTimeout(() => {
+                document.addEventListener('click', closeTooltipOutside);
+            }, 10);
+        }
+
+        function closeTooltip(e) {
+            if (e) e.stopPropagation();
+            if (activeTooltip) {
+                activeTooltip.remove();
+                activeTooltip = null;
+            }
+            document.querySelectorAll('.badge').forEach(b => b.classList.remove('badge-expanded'));
+            document.removeEventListener('click', closeTooltipOutside);
+        }
+
+        function closeTooltipOutside(e) {
+            if (activeTooltip && !activeTooltip.contains(e.target) && !e.target.classList.contains('badge')) {
+                closeTooltip();
+            }
+        }
+    </script>
+</body>
+
+</html>

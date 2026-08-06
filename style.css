@@ -1,0 +1,1766 @@
+@font-face {
+    font-family: 'Plastique';
+    src: url('plastique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ==========================================================================
+   CSS GLOBAL - VARIABLES DE DISEÑO (Taller Mecánico / Spider-Punk / Cromado)
+   ========================================================================== */
+
+:root {
+    --bg-color: hsl(220, 10%, 8%);
+    /* Gris Grasa */
+    --bg-pattern-color: hsl(220, 12%, 5%);
+    /* Gris metálico oscuro */
+    --card-bg: hsla(0, 0%, 4%, 0.92);
+    /* Negro humo denso */
+    --card-border: hsla(0, 0%, 100%, 0.15);
+
+    /* Colores Temáticos Eléctricos (Basados en RGB de Spider-Punk) */
+    --neon-green: hsl(96, 84%, 52%);
+    /* Verde Eléctrico */
+    --neon-green-glow: hsla(96, 84%, 52%, 0.12);
+    --neon-green-dark: hsl(96, 84%, 28%);
+    --neon-green-dark-glow: hsla(96, 84%, 28%, 0.12);
+    --neon-pink: hsl(324, 88%, 44%);
+    /* Rosa Vibrante */
+    --neon-pink-glow: hsla(324, 88%, 44%, 0.12);
+    --neon-blue: hsl(207, 76%, 52%);
+    /* Azul Eléctrico */
+    --neon-blue-glow: hsla(207, 76%, 52%, 0.15);
+    --neon-purple: hsl(290, 98%, 54%);
+    /* Morado Magenta */
+    --neon-purple-glow: hsla(290, 98%, 54%, 0.12);
+    --neon-yellow: hsl(55, 100%, 50%);
+    /* Amarillo Eléctrico */
+    --neon-orange: hsl(24, 100%, 50%);
+    /* Naranja Eléctrico */
+
+    /* Metal y Cromo */
+    --chrome-light: linear-gradient(135deg, #ffffff 0%, #cbd5e1 30%, #94a3b8 50%, #475569 70%, #f1f5f9 100%);
+    --chrome-border: linear-gradient(135deg, #e2e8f0 0%, #64748b 40%, #ffffff 60%, #334155 100%);
+
+    --text-primary: hsl(0, 0%, 96%);
+    --text-secondary: hsl(220, 10%, 80%);
+    --text-muted: hsl(220, 8%, 55%);
+    --transition-speed: 0.3s;
+
+    /* Tipografías */
+    --font-title: 'Black Ops One', cursive;
+    --font-section: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-dymo: 'Plastique', monospace;
+}
+
+/* Reset y Estructura Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    touch-action: pan-y;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: url('textura_chapa.png');
+    background-repeat: repeat;
+    background-size: 420px 420px;
+
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+/* Capa de manchas de grasa, aceite y óxido superpuesta */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('manchas_taller.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    mix-blend-mode: multiply;
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Resplandores de fondo estilo taller punk */
+.bg-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(140px);
+    opacity: 0.45;
+}
+
+.bg-glow-blue {
+    top: -200px;
+    left: 15%;
+    background: radial-gradient(circle, var(--neon-blue-glow) 0%, transparent 70%);
+}
+
+.bg-glow-green {
+    bottom: -200px;
+    right: 15%;
+    background: radial-gradient(circle, var(--neon-pink-glow) 0%, transparent 70%);
+}
+
+/* Contenedor Principal (Tarjeta) - Rediseño Fanzine/Taller */
+.main-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 1.5rem auto;
+    background: 
+        linear-gradient(135deg, 
+            hsla(220, 15%, 16%, 0.88) 0%, 
+            hsla(220, 10%, 8%, 0.92) 20%, 
+            hsla(220, 15%, 22%, 0.88) 45%, 
+            hsla(220, 10%, 6%, 0.93) 60%, 
+            hsla(220, 12%, 18%, 0.88) 80%, 
+            hsla(220, 10%, 10%, 0.92) 100%
+        ), 
+        url('textura_chapa.png') repeat;
+    background-size: auto, 420px 420px;
+    border: 3px solid #475569;
+    border-radius: 8px;
+    /* Esquinas ligeramente redondeadas pero brutas */
+    padding: 2.5rem 1.5rem;
+    /* Sombras duras desalineadas estilo punk con destellos internos cromados */
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.18), 
+        inset 0 -1px 3px rgba(0, 0, 0, 0.6), 
+        12px 12px 0px rgba(0, 0, 0, 0.95);
+    position: relative;
+    overflow: visible;
+    animation: fadeIn 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) rotate(-1deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+/* Encabezado */
+.profile-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: visible; /* Permitir que las pegatinas sobresalgan del cabezote */
+}
+
+/* Decoraciones Grunge Punk de Cabecera */
+.header-decorations-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* No interrumpir clics en la foto de perfil */
+    z-index: 1;
+    overflow: visible;
+}
+
+/* Mancha de aceite en el fondo */
+.decor-oil {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 180px;
+    opacity: 0.38;
+    transform: rotate(-15deg);
+    filter: contrast(1.3) brightness(0.7);
+}
+
+/* Rasguños de metal */
+.decor-scratches {
+    position: absolute;
+    bottom: -30px;
+    right: -25px;
+    width: 210px;
+    opacity: 0.32;
+    transform: rotate(20deg);
+}
+
+/* Contenedor y posicionamiento de tornillos del contenedor principal */
+.container-screws {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* No entorpecer clicks en la página */
+    z-index: 10; /* Encima del fondo y bordes, pero por debajo de modales */
+    overflow: visible;
+}
+
+.c-screw {
+    position: absolute;
+    width: 29px;
+    height: 29px;
+    opacity: 0.85;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.85));
+    z-index: 10;
+}
+
+/* Tornillos de las esquinas extremas del container */
+.c-screw-tl {
+    top: 15px;
+    left: 15px;
+    transform: rotate(15deg);
+}
+
+.c-screw-tr {
+    top: 15px;
+    right: 15px;
+    transform: rotate(-35deg);
+}
+
+.c-screw-bl {
+    bottom: 15px;
+    left: 15px;
+    transform: rotate(85deg);
+}
+
+.c-screw-br {
+    bottom: 15px;
+    right: 15px;
+    transform: rotate(-10deg);
+}
+
+/* Tornillos laterales distribuidos a lo largo del scroll */
+.c-screw-l1 {
+    top: -3px;
+    left: -20px;
+    transform: rotate(45deg);
+}
+
+.c-screw-r1 {
+    top: 35%;
+    right: 15px;
+    transform: rotate(-60deg);
+}
+
+.c-screw-l2 {
+    top: 55%;
+    left: 15px;
+    transform: rotate(115deg);
+}
+
+.c-screw-r2 {
+    top: 70%;
+    right: 15px;
+    transform: rotate(-20deg);
+}
+
+.c-screw-l3 {
+    top: 85%;
+    left: 15px;
+    transform: rotate(70deg);
+}
+
+.c-screw-r3 {
+    top: 95%;
+    right: 15px;
+    transform: rotate(-110deg);
+}
+
+/* Etiquetas Dymo/Papel yuxtapuestas */
+.decor-label {
+    position: absolute;
+    font-family: var(--font-dymo);
+    font-size: 0.78rem;
+    font-weight: 900;
+    padding: 0.25rem 0.65rem;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0px #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+.decor-label-danger {
+    top: 30px;
+    right: -30px;
+    background: var(--neon-orange);
+    color: #000;
+    transform: rotate(12deg);
+}
+
+/* Graffiti de fondo debajo del perfil que sobresale del container */
+.decor-graffiti {
+    position: absolute;
+    top: 201px; /* Desplazado exactamente un 11% de la altura del cabezote hacia abajo */
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-3deg); /* Centrado vertical y horizontal absoluto */
+    width: 740px; /* Incrementado 35% (de 550px a 740px) */
+    max-width: none;
+    opacity: 0.88;
+    z-index: 1; /* Detrás de la foto de perfil y de las etiquetas de rol */
+    mix-blend-mode: screen; /* Mezcla de pantalla para hacer transparente el fondo negro */
+    pointer-events: none;
+}
+
+/* Contenedor de Foto de Perfil Circular - Con marco cromado y resplandor verde neón */
+.profile-photo-container {
+    width: 292px;
+    height: 292px;
+    margin: 0 auto 1.8rem auto;
+    border-radius: 50%;
+    border: 4px solid #cbd5e1;
+    box-shadow:
+        0 0 0 3px #475569,
+        0 0 15px var(--neon-green-glow),
+        0 10px 30px rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    z-index: 2; /* Arriba de las manchas de fondo pero debajo de tornillos y marcador */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.profile-photo-container:hover {
+    border-color: var(--neon-green);
+    transform: scale(1.03) rotate(1deg);
+    box-shadow:
+        0 0 0 3px #1e293b,
+        0 0 25px var(--neon-green),
+        0 15px 35px rgba(0, 0, 0, 0.8);
+}
+
+.profile-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-photo-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    color: var(--neon-green);
+    font-family: var(--font-section);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 6px 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.profile-photo-container:hover .profile-photo-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Título BRUTO - Espacio Negativo Grunge Punk (Negro dominante con aerosol neón de fondo) */
+.profile-name {
+    font-family: var(--font-title);
+    font-size: clamp(3.36rem, 20vw, 7.56rem); /* Reducido un 20% para un balance más refinado */
+    font-weight: 400;
+    line-height: 0.8; /* Mantiene la huella vertical compacta al escalar */
+    letter-spacing: 2px;
+    color: #070a0f; /* Negro asfalto profundo de Bruto */
+    -webkit-text-stroke: 1.5px var(--neon-green); /* Borde interno verde claro de 1.5px */
+    text-shadow:
+        /* Borde externo de verde oscuro de 2px (Total 3.5px) */
+        -3.5px -3.5px 0 var(--neon-green-dark),
+         3.5px -3.5px 0 var(--neon-green-dark),
+        -3.5px  3.5px 0 var(--neon-green-dark),
+         3.5px  3.5px 0 var(--neon-green-dark),
+        -3.5px  0px   0 var(--neon-green-dark),
+         3.5px  0px   0 var(--neon-green-dark),
+         0px   -3.5px 0 var(--neon-green-dark),
+         0px    3.5px 0 var(--neon-green-dark),
+        /* Resplandores neón de fondo */
+        0 0 8px var(--neon-green-dark),
+        0 0 20px var(--neon-green-dark-glow),
+        /* Bordes azules de acento */
+        -5px 5px 6px var(--neon-blue),
+        5px -5px 6px var(--neon-blue),
+        /* Sombra dura de relieve */
+        6px 6px 0px #000;
+    transform: rotate(-3.5deg);
+    display: block; /* Para justificar y centrar */
+    margin: calc(-3rem - 5px) auto 0.8rem auto; /* Centrado horizontal, desplazado 5px hacia arriba y 0.8rem hacia abajo */
+    width: fit-content;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+
+
+.profile-subtitle {
+    font-family: var(--font-section);
+    font-size: 1.44rem; /* Incrementado 3px (de 1.25rem/20px a 1.44rem/23px) */
+    color: var(--neon-yellow); /* Amarillo radioactivo */
+    line-height: 1.15; /* Espacio de líneas reducido para texto en múltiples renglones */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 0px #000;
+    position: relative;
+    top: 4px; /* Desplazado verticalmente hacia abajo para evitar superposición */
+    z-index: 3; /* Por encima del graffiti de fondo */
+}
+
+.tag-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.5rem;
+    max-width: 420px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3; /* Por encima del graffiti de fondo */
+}
+
+.hashtag-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.6rem;
+    max-width: 380px;
+    margin: 0.8rem auto 0 auto;
+    position: relative;
+    z-index: 3; /* Por encima del graffiti de fondo */
+}
+
+.hashtag {
+    color: var(--neon-green);
+    font-family: var(--font-section);
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 0px #000;
+}
+
+/* Badges estilo cinta de carrocero / recortables desalineados */
+.badge {
+    background: #e2e8f0;
+    border: none;
+    color: #0f172a;
+    font-family: var(--font-section);
+    font-size: 0.8rem;
+    font-weight: 900;
+    padding: 0.35rem 0.8rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 3px 3px 0px #000;
+    transform: rotate(var(--rotate-val, 1deg));
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.badge:hover {
+    transform: scale(1.1) rotate(0deg);
+    cursor: default;
+}
+
+.badge:nth-child(1) {
+    --rotate-val: 2.2deg;
+    background: var(--neon-pink);
+    color: #fff;
+}
+
+.badge:nth-child(2) {
+    --rotate-val: -1.5deg;
+    background: var(--neon-yellow);
+    color: #000;
+}
+
+.badge:nth-child(3) {
+    --rotate-val: 1.2deg;
+    background: var(--neon-green);
+    color: #000;
+}
+
+.badge:nth-child(4) {
+    --rotate-val: -2.5deg;
+    background: var(--neon-blue);
+    color: #fff;
+}
+
+.badge:nth-child(5) {
+    --rotate-val: -1deg;
+    background: var(--neon-orange);
+    color: #000;
+}
+
+.badge:nth-child(6) {
+    --rotate-val: 1.5deg;
+    background: var(--neon-purple);
+    color: #fff;
+}
+
+.badge:nth-child(7) {
+    --rotate-val: 2deg;
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.badge:nth-child(8) {
+    --rotate-val: -2deg;
+    background: var(--neon-pink);
+    color: #fff;
+}
+
+.badge:nth-child(9) {
+    --rotate-val: 1.2deg;
+    background: var(--neon-green);
+    color: #000;
+}
+
+.badge:nth-child(10) {
+    --rotate-val: -1.5deg;
+    background: var(--neon-yellow);
+    color: #000;
+}
+
+/* Secciones generales */
+.info-section {
+    margin-bottom: 2.8rem;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Para anclar tornillos y elementos decorativos relativos */
+}
+
+.info-section h2 {
+    font-family: var(--font-dymo);
+    font-size: 1.35rem; /* Letra más pequeña para que quepa en una sola línea */
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000 !important; /* Texto negro para rellenar los bloques de Plastique */
+    display: inline-block;
+    border: 2px solid #000;
+    letter-spacing: 2px;
+    margin-bottom: 1.2rem;
+    white-space: nowrap; /* Evita que el texto Dymo salte de línea */
+    
+    /* Sombra base dura de la etiqueta */
+    box-shadow: 4px 4px 0px #000;
+}
+
+/* Títulos Impares (Izquierda, inclinación negativa, desborde izquierdo y paralelogramo de par) */
+.info-section:nth-of-type(odd) h2 {
+    align-self: flex-start;
+    margin-left: -2rem;
+    transform: rotate(-2.5deg);
+    clip-path: polygon(2% 2%, 94% 22%, 98% 78%, 6% 98%);
+    text-align: left;
+    padding: calc(0.3rem - 3px) 1.6rem calc(0.3rem + 3px) 2.4rem; /* Desplazado texto 3px hacia arriba sin alterar la caja del trapecio */
+}
+
+/* Títulos Pares (Derecha, inclinación positiva, desborde derecho y paralelogramo de impar) */
+.info-section:nth-of-type(even) h2 {
+    align-self: flex-end;
+    margin-right: -2rem;
+    transform: rotate(2deg);
+    clip-path: polygon(6% 22%, 98% 2%, 94% 78%, 2% 98%);
+    text-align: right;
+    padding: calc(0.3rem - 3px) 2.4rem calc(0.3rem + 3px) 1.6rem; /* Desplazado texto 3px hacia arriba sin alterar la caja del trapecio */
+}
+
+/* Secuencia cromática de fondos neón fluorescentes alternados */
+.info-section:nth-of-type(7n+1) h2 { background: var(--neon-green); }
+.info-section:nth-of-type(7n+2) h2 { background: var(--neon-blue); }
+.info-section:nth-of-type(7n+3) h2 { background: var(--neon-pink); }
+.info-section:nth-of-type(7n+4) h2 { background: #fbbf24; } /* Amarillo neón */
+.info-section:nth-of-type(7n+5) h2 { background: var(--neon-purple); }
+.info-section:nth-of-type(7n+6) h2 { background: var(--neon-green); }
+.info-section:nth-of-type(7n+7) h2 { background: var(--neon-pink); }
+
+.bio-text {
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.alert-box {
+    background: #000;
+    border: 2px dashed var(--neon-pink);
+    border-radius: 4px;
+    padding: 1.2rem;
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    box-shadow: 4px 4px 0px rgba(211, 13, 131, 0.25);
+    position: relative;
+}
+
+/* Widget del Collar - Estilo Taller Cromado & Punk */
+.collar-widget {
+    background: repeating-linear-gradient(45deg, #161a1f 0px, #161a1f 8px, #0e1114 8px, #0e1114 16px);
+    border: 4px solid #000;
+    padding: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 8px 8px 0px var(--neon-pink);
+    border-radius: 4px;
+}
+
+.collar-widget::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: repeating-linear-gradient(-45deg, var(--neon-green), var(--neon-green) 6px, #000 6px, #000 12px);
+    border-right: 2px solid #000;
+}
+
+.collar-widget:hover {
+    transform: translateY(-3px);
+    box-shadow: 10px 10px 0px var(--neon-pink);
+}
+
+.collar-icon-container {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    background: #161a1f;
+    border: 2px solid #475569;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 360px) {
+    .collar-widget {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+
+    .collar-icon-container {
+        width: 70px;
+        height: 70px;
+    }
+
+    .collar-svg {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.collar-svg {
+    width: 68px;
+    height: 68px;
+}
+
+/* Colores de correa y metal en el SVG */
+.collar-strap {
+    stroke: hsl(25, 60%, 40%);
+    transition: stroke 0.3s;
+}
+
+.collar-buckle {
+    fill: #f1f5f9;
+    filter: drop-shadow(0 0 2px #fff);
+    transition: fill 0.3s;
+}
+
+.collar-spike {
+    fill: #cbd5e1;
+    filter: drop-shadow(0 0 1px #fff);
+    transition: fill 0.3s;
+}
+
+.collar-details {
+    flex-grow: 1;
+}
+
+.collar-details h3 {
+    font-family: var(--font-section);
+    font-size: 1.15rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+    letter-spacing: 0.5px;
+}
+
+.collar-desc {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.collar-status-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.status-label {
+    font-family: var(--font-section);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.status-value {
+    font-family: var(--font-section);
+    font-size: 0.85rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    box-shadow: 2px 2px 0px #000;
+    text-transform: uppercase;
+}
+
+.status-equipped {
+    background: rgba(114, 236, 30, 0.15);
+    color: var(--neon-green);
+    border: 1.5px solid var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
+}
+
+.status-unequipped {
+    background: rgba(211, 13, 131, 0.15);
+    color: var(--neon-pink);
+    border: 1.5px solid var(--neon-pink);
+}
+
+/* Desequipar (clase añadida por JS) */
+.collar-widget.unequipped {
+    box-shadow: 8px 8px 0px var(--neon-blue);
+}
+
+.collar-widget.unequipped .collar-icon-container {
+    background: #0c0e12;
+    border-color: #334155;
+}
+
+.collar-widget.unequipped .collar-strap {
+    stroke: #334155;
+}
+
+.collar-widget.unequipped .collar-buckle {
+    fill: #334155;
+    filter: none;
+}
+
+.collar-widget.unequipped .collar-spike {
+    fill: #1e293b;
+    filter: none;
+}
+
+/* ==========================================================================
+   CARTA POKÉMON & GRID DE MAQUETACIÓN
+   ========================================================================== */
+.pokemon-card-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    align-items: center;
+    width: 100%;
+}
+
+/* Caja de Carta Pokémon - Placa Metálica Cromada Industrial */
+.pokemon-card-container {
+    position: relative;
+    width: 100%;
+    max-width: 402px;
+    aspect-ratio: 728 / 1024;
+    overflow: hidden;
+    border: 3px solid #000;
+    border-radius: 4px;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.9);
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: #000;
+}
+
+.pokemon-card-container:hover {
+    transform: translateY(-5px) scale(1.035) rotate(0.5deg);
+}
+
+.pokemon-card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity var(--transition-speed) ease-in-out;
+}
+
+/* La carta callejera (desequipada) siempre se mantiene al 100% de opacidad en el fondo */
+.card-unequipped-img {
+    z-index: 1;
+    opacity: 1;
+}
+
+/* La carta adoptada (equipada) se superpone arriba y controla la disolvencia mediante su opacidad */
+.card-equipped-img {
+    z-index: 2;
+    opacity: 1;
+}
+
+/* Cuando se desequipa, la adoptada (superior) se desvanece suavemente para revelar la inferior */
+.pokemon-card-container.unequipped .card-equipped-img {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   PANEL DE ESTADÍSTICAS (DYNAMIC BARS) - Rediseño Taller & Punk
+   ========================================================================== */
+.stats-panel {
+    width: 100%;
+    background: repeating-linear-gradient(45deg, #161a1f 0px, #161a1f 8px, #0e1114 8px, #0e1114 16px);
+    border: 4px solid #000;
+    border-radius: 4px;
+    padding: 1.4rem 1.1rem;
+    box-shadow: 8px 8px 0px var(--neon-pink);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Accent border stripe matching the collar widget */
+.stats-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: repeating-linear-gradient(-45deg, var(--neon-green), var(--neon-green) 6px, #000 6px, #000 12px);
+    border-right: 2px solid #000;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    z-index: 2;
+}
+
+.stats-panel.unequipped {
+    box-shadow: 8px 8px 0px var(--neon-blue);
+}
+
+.stats-panel h3 {
+    font-family: var(--font-dymo);
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0 auto 1.2rem auto;
+    color: #000;
+    background: var(--neon-yellow);
+    display: block;
+    width: max-content;
+    padding: 0.25rem 1.6rem;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    letter-spacing: 1.5px;
+    transform: skewX(-12deg) rotate(-1.5deg);
+    text-align: center;
+    position: relative;
+    z-index: 3;
+}
+
+/* Dynamic Stats Progress Bars (Grunge Punk warning-tape style) */
+.stats-bars-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin: 1rem 0;
+    width: 100%;
+    position: relative;
+    z-index: 3;
+}
+
+.stat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    width: 100%;
+}
+
+.stat-bar-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px; /* Aumentado para alojar el badge de 38px */
+}
+
+.stat-icon-badge {
+    width: 38px; /* Aumentado un 35% de 28px */
+    height: 38px; /* Aumentado un 35% de 28px */
+    border: 3px solid #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    z-index: 5;
+    box-shadow: 2px 2px 0px #000;
+    font-size: 1.28rem; /* Aumentado un 35% de 0.95rem */
+}
+
+/* Badge background colors - 20% darker than the bar fills for contrast */
+.badge-hp { background: hsl(96, 84%, 30%); }
+.badge-atk { background: hsl(324, 88%, 24%); }
+.badge-def { background: hsl(207, 76%, 28%); }
+.badge-spd { background: hsl(290, 98%, 28%); }
+.badge-satk { background: hsl(55, 100%, 25%); }
+.badge-sdef { background: hsl(24, 100%, 25%); }
+
+.stat-progress-track {
+    flex-grow: 1;
+    height: 17px;
+    background: #000;
+    border: 3px solid #000;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-left: 19px; /* Centrado en el badge de 38px (mitad) */
+}
+
+.stat-progress-fill {
+    height: 100%;
+    width: 0%; /* Dynamic */
+    transition: width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.4);
+    position: relative;
+}
+
+/* Stat-specific warning tape textures */
+.fill-hp {
+    background: repeating-linear-gradient(-45deg, 
+        var(--neon-green) 0px, var(--neon-green) 10px, 
+        #000 10px, #000 20px
+    );
+}
+
+.fill-atk {
+    background: repeating-linear-gradient(-45deg, 
+        var(--neon-pink) 0px, var(--neon-pink) 10px, 
+        #000 10px, #000 20px
+    );
+}
+
+.fill-def {
+    background: repeating-linear-gradient(-45deg, 
+        var(--neon-blue) 0px, var(--neon-blue) 10px, 
+        #000 10px, #000 20px
+    );
+}
+
+.fill-spd {
+    background: repeating-linear-gradient(-45deg, 
+        var(--neon-purple) 0px, var(--neon-purple) 10px, 
+        #000 10px, #000 20px
+    );
+}
+
+.fill-satk {
+    background: repeating-linear-gradient(-45deg, 
+        var(--neon-yellow) 0px, var(--neon-yellow) 10px, 
+        #000 10px, #000 20px
+    );
+}
+
+.fill-sdef {
+    background: repeating-linear-gradient(-45deg, 
+        var(--neon-orange) 0px, var(--neon-orange) 10px, 
+        #000 10px, #000 20px
+    );
+}
+
+.stat-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 23px; /* Alineado con el borde del track (19px margin + 3px border + offset) */
+    padding-right: 4px;
+    margin-top: -0.15rem;
+}
+
+.stat-name, .stat-number {
+    font-family: var(--font-section); /* Misma tipografía Barlow Condensed */
+    font-size: 0.85rem; /* Reducido unos 4px para un look compacto */
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+
+.stat-total {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 2px dashed rgba(255, 255, 255, 0.15);
+    text-align: right;
+    position: relative;
+    z-index: 3;
+}
+
+.stat-total-badge {
+    display: inline-block;
+    font-family: var(--font-dymo);
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #000;
+    background: var(--neon-blue);
+    padding: 0.35rem 1.6rem;
+    /* Trapecio simétrico con ángulos marcados (arriba más angosto, abajo más ancho) */
+    clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 100%, 0% 100%);
+    /* Drop shadow sigue la silueta del trapecio */
+    filter: drop-shadow(3px 3px 0px #000);
+    letter-spacing: 1.5px;
+}
+
+/* ==========================================================================
+   MODAL DE GALERÍA DE FOTOS (LIGHTBOX) - Rediseño Taller & Punk
+   ========================================================================== */
+.gallery-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1500;
+    background: rgba(7, 8, 10, 0.96);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.gallery-modal-content {
+    width: 100%;
+    max-width: 400px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.gallery-close-btn {
+    position: absolute;
+    top: -45px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--neon-pink);
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+    text-shadow: 3px 3px 0px #000;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.gallery-close-btn:hover {
+    color: var(--neon-green);
+    transform: scale(1.2);
+}
+
+.gallery-main-viewport {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 0px;
+    overflow: hidden;
+    border: 4px solid #cbd5e1;
+    border-image: var(--chrome-border) 1;
+    box-shadow:
+        0px 0px 0px 2px #000,
+        0 15px 40px rgba(0, 0, 0, 0.9);
+    position: relative;
+    background: #090b0d;
+}
+
+.gallery-slider {
+    display: flex;
+    width: 500%;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-slide-img {
+    width: 20%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: 2px solid #000;
+    color: #000;
+    width: 42px;
+    height: 42px;
+    border-radius: 2px;
+    font-family: var(--font-section);
+    font-weight: 900;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    user-select: none;
+    box-shadow: 2px 2px 0px #000;
+}
+
+.gallery-nav-btn:hover {
+    background: var(--neon-pink);
+    color: #fff;
+    box-shadow: 3px 3px 0px #000;
+    transform: translateY(-52%) scale(1.05);
+}
+
+.gallery-nav-prev {
+    left: 12px;
+}
+
+.gallery-nav-next {
+    right: 12px;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: 8px;
+    margin-top: 1.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.gallery-thumb {
+    width: 55px;
+    height: 55px;
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #000;
+    opacity: 0.5;
+    box-shadow: 2px 2px 0px #000;
+    transition: all 0.2s;
+    background: none;
+    padding: 0;
+}
+
+.gallery-thumb.active {
+    border-color: var(--neon-green);
+    opacity: 1;
+    transform: scale(1.08) rotate(-1.5deg);
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   GUSTOS, DISGUSTOS (INTERACTIVOS ACCORDION) - Rediseño Taller & Punk
+   ========================================================================== */
+.pref-interactive-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+}
+
+.pref-group {
+    flex: 1 1 100%;
+    background: #090b0d;
+    border: 2px solid #27272a;
+    border-radius: 8px; /* Redondeado alineado con el botón */
+    overflow: hidden;
+    box-shadow: 4px 4px 0px #000;
+    display: flex;
+    flex-direction: column;
+    /* Transición completa de ancho (flex/max-width) y efectos de hover */
+    transition: 
+        flex-basis 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+        max-width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+        transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), 
+        box-shadow 0.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+        border-color 0.3s ease;
+}
+
+/* Hover grupal: el acordeón completo se eleva como un bloque sólido */
+.pref-group:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px 0px #000;
+}
+
+@media (min-width: 400px) {
+    .pref-group {
+        flex: 1 1 calc(50% - 0.5rem);
+        max-width: calc(50% - 0.5rem);
+    }
+    .pref-group.active {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+.pref-btn {
+    width: 100%;
+    border: none;
+    background: none;
+    font-size: 2.85rem; /* Emote un 30% más grande (de 2.2rem a 2.85rem) */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    user-select: none;
+    padding: 1rem;
+    border-radius: 8px; /* Restaurado redondeado bonito */
+    transition: background-color var(--transition-speed) ease;
+}
+
+.pref-btn-likes {
+    background: var(--neon-green);
+    color: #000;
+}
+
+.pref-btn-likes:hover {
+    background: hsl(120, 90%, 45%); /* Verde semáforo brillante */
+}
+
+.pref-btn-dislikes {
+    background: var(--neon-pink);
+    color: #fff;
+}
+
+.pref-btn-dislikes:hover {
+    background: #e11d48; /* Rosa semáforo vivo */
+}
+
+/* Borde y fondo activo para Gustos (Verde Eléctrico) */
+.pref-group-likes.active {
+    border-color: var(--neon-green);
+    box-shadow: 6px 6px 0px rgba(114, 236, 30, 0.15);
+}
+
+/* Borde y fondo activo para No le gusta (Rosa Vibrante) */
+.pref-group-dislikes.active {
+    border-color: var(--neon-pink);
+    box-shadow: 6px 6px 0px rgba(211, 13, 131, 0.15);
+}
+
+.pref-content {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.2s ease, visibility 0.3s;
+    padding: 0 1.5rem;
+}
+
+.pref-group.active .pref-content {
+    max-height: 250px; /* Incrementado para alojar el texto más grande */
+    opacity: 1;
+    visibility: visible;
+    padding: 1.2rem 1.5rem; /* Padding superior e inferior equilibrado de 1.2rem */
+}
+
+.pref-content ul {
+    list-style: none;
+    width: 100%;
+}
+
+.pref-content li {
+    font-family: var(--font-body);
+    font-size: 1.05rem; /* Letra un poco más grande (de 0.9rem a 1.05rem) */
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 1.6rem; /* Aumentado ligeramente para balancear con el emote */
+    margin-bottom: 0.8rem; /* Mayor espacio entre líneas para que respire */
+    line-height: 1.5;
+}
+
+.pref-content li:last-child {
+    margin-bottom: 0;
+}
+
+.pref-group-likes li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--neon-green);
+    font-weight: 900;
+}
+
+.pref-group-dislikes li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: var(--neon-pink);
+    font-weight: 900;
+}
+
+/* ==========================================================================
+   SEMÁFORO DE SEGURIDAD
+   ========================================================================== */
+.traffic-light-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.light-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.2rem 1.5rem;
+    background: #0f1216;
+    border: 2px solid #334155;
+    border-radius: 4px;
+    box-shadow: 5px 5px 0px #000;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.light-card:hover {
+    transform: translateX(4px) translateY(-2px);
+    box-shadow: 7px 7px 0px #000;
+}
+
+/* Remaches cromados en las esquinas de las placas */
+.light-card::before,
+.light-card::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #ffffff 30%, #64748b 80%);
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+.light-card::before {
+    top: 6px;
+    left: 6px;
+}
+
+.light-card::after {
+    bottom: 6px;
+    right: 6px;
+}
+
+.light-indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+}
+
+.light-content h4 {
+    font-family: var(--font-section);
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.5px;
+}
+
+.light-content p {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.light-green {
+    border-color: rgba(114, 236, 30, 0.3);
+}
+
+.light-green .light-indicator {
+    background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+.light-green h4 {
+    color: var(--neon-green);
+}
+
+.light-yellow {
+    border-color: rgba(251, 191, 36, 0.3);
+}
+
+.light-yellow .light-indicator {
+    background: #fbbf24;
+    box-shadow: 0 0 10px #fbbf24;
+}
+
+.light-yellow h4 {
+    color: #fbbf24;
+}
+
+.light-red {
+    border-color: rgba(211, 13, 131, 0.3);
+}
+
+.light-red .light-indicator {
+    background: var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.light-red h4 {
+    color: var(--neon-pink);
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA & ETIQUETAS
+   ========================================================================== */
+.community-tags {
+    margin-top: 2rem;
+    padding: 1.2rem;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    text-align: center;
+}
+
+.community-tags p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    word-spacing: 2px;
+    line-height: 1.5;
+}
+
+.main-footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--card-border);
+    width: 100%;
+    max-width: 450px;
+}
+
+.main-footer p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   NUEVAS TARJETAS Y ELEMENTOS DE DISEÑO INDUSTRIAL (FASE 3)
+   ========================================================================== */
+
+/* Tarjetas de Habilidad y Cómo Acercarse */
+.ability-card, .acercarse-card {
+    width: 100%;
+    background: var(--card-bg);
+    border: 3px solid #000;
+    border-radius: 4px;
+    padding: 1.8rem 1.4rem;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.95);
+    position: relative;
+    margin-top: 1rem;
+    box-sizing: border-box;
+}
+
+.ability-card h3, .acercarse-card h2 {
+    font-family: var(--font-section);
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    color: var(--neon-green);
+    letter-spacing: 0.5px;
+}
+
+.ability-card p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+
+/* Ventana flotante de tooltip de información para etiquetas (Placa de metal) */
+.badge-tooltip {
+    position: absolute;
+    width: 260px;
+    background: #090b0d;
+    border: 3px solid #000;
+    padding: 1.2rem;
+    box-shadow: 6px 6px 0px #000;
+    z-index: 1000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    animation: tooltipFadeIn 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.badge-tooltip p {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    line-height: 1.45;
+    margin: 0;
+    padding-right: 1.2rem;
+}
+
+.tooltip-close-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: none;
+    border: none;
+    color: var(--neon-pink);
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+    line-height: 1;
+    padding: 2px;
+}
+
+.tooltip-close-btn:hover {
+    color: var(--text-primary);
+}
+
+@keyframes tooltipFadeIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Efecto de agrandamiento al mantener presionado */
+.badge.badge-expanded {
+    transform: scale(1.15) rotate(4deg) !important;
+    box-shadow: 0 0 15px var(--neon-green) !important;
+    z-index: 100;
+}
+
+/* ==========================================================================
+   ESTILOS DE ACCESIBILIDAD (Foco e Indicadores)
+   ========================================================================== */
+
+/* Foco en etiquetas */
+.badge:focus-visible {
+    outline: 3px solid var(--neon-green);
+    outline-offset: 2px;
+    transform: scale(1.1) rotate(0deg) !important;
+    z-index: 100;
+}
+
+/* Foco en collar y foto de perfil */
+.collar-widget:focus-visible,
+.profile-photo-container:focus-visible {
+    outline: 3px solid var(--neon-green);
+    outline-offset: 4px;
+}
+
+/* Foco en botones generales y miniaturas */
+.pref-btn:focus-visible,
+.gallery-close-btn:focus-visible,
+.gallery-nav-btn:focus-visible,
+.gallery-thumb:focus-visible,
+.tooltip-close-btn:focus-visible {
+    outline: 3px solid var(--neon-green);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   SECCIÓN DE RESPONSIVIDAD MÓVIL (DECLARED AT BOTTOM TO OVERRIDE BASE STYLES)
+   ========================================================================== */
+
+/* Responsividad para cabecera en móviles */
+@media (max-width: 480px) {
+    .main-container {
+        left: -6px; /* Desplaza el container a la izquierda para simetrizar por la sombra de 12px */
+    }
+    .profile-name {
+        margin-top: calc(-2.5rem - 5px); /* Desplazado 5px hacia arriba */
+        margin-bottom: 0.6rem; /* Margen inferior positivo */
+    }
+    .profile-photo-container {
+        width: 230px; /* Escalado proporcional */
+        height: 230px;
+        margin-bottom: 1.4rem;
+    }
+    .decor-oil {
+        width: 130px;
+        top: -10px;
+        left: -10px;
+    }
+    .decor-scratches {
+        width: 140px;
+        bottom: -15px;
+        right: -10px;
+    }
+    .decor-label-danger {
+        right: -10px;
+        top: 15px;
+        font-size: 0.7rem;
+        padding: 0.15rem 0.45rem;
+    }
+    .c-screw {
+        width: 22px;
+        height: 22px;
+    }
+    .c-screw-tl { top: 10px; left: 10px; }
+    .c-screw-tr { top: 10px; right: 10px; }
+    .c-screw-bl { bottom: 10px; left: 10px; }
+    .c-screw-br { bottom: 10px; right: 10px; }
+    .c-screw-r1 { right: 10px; }
+    .c-screw-l2 { left: 10px; }
+    .c-screw-r2 { right: 10px; }
+    .c-screw-l3 { left: 10px; }
+    .c-screw-r3 { right: 10px; }
+    
+    .c-screw-l1 {
+        left: -10px !important; /* Colocado sobre el trapezoide de Presentación en móvil */
+        top: -6px !important;
+        width: 22px;
+        height: 22px;
+    }
+
+    .decor-graffiti {
+        width: 160vw;
+        top: 157px; /* Desplazado exactamente un 11% de la altura de la cabecera en móviles hacia abajo */
+        transform: translate(-50%, -50%) rotate(-3deg);
+    }
+    .profile-subtitle {
+        top: 2px; /* Desplazado verticalmente hacia abajo en móviles */
+    }
+
+    /* Ajustes para evitar desbordamiento horizontal de títulos trapezoides en móviles */
+    .info-section:nth-of-type(odd) h2 {
+        margin-left: -0.8rem;
+        font-size: 1.15rem;
+        padding: calc(0.3rem - 3px) 1.2rem calc(0.3rem + 3px) 1.5rem;
+    }
+    .info-section:nth-of-type(even) h2 {
+        margin-right: -0.8rem;
+        font-size: 1.15rem;
+        padding: calc(0.3rem - 3px) 1.5rem calc(0.3rem + 3px) 1.2rem;
+    }
+    .stats-panel {
+        overflow: visible; /* Permite que el trapezoide rotado sea completamente visible */
+    }
+    .stats-panel h3 {
+        font-size: 0.85rem;
+        padding: 0.2rem 0.6rem;
+        letter-spacing: 0px;
+        transform: skewX(-6deg) rotate(-1deg);
+    }
+}
+
+/* Responsividad extrema para móviles de 320px-360px */
+@media (max-width: 360px) {
+    body {
+        padding: 0.5rem;
+    }
+    .main-container {
+        padding: 1.5rem 0.8rem;
+        left: -6px;
+    }
+    .profile-photo-container {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 1.2rem;
+    }
+    .profile-name {
+        margin-top: calc(-2.1rem - 5px); /* Desplazado 5px hacia arriba */
+        margin-bottom: 0.4rem; /* Margen inferior positivo */
+    }
+    .profile-subtitle {
+        font-size: 1.15rem;
+        top: 1px; /* Desplazado verticalmente hacia abajo en móviles extremos */
+    }
+    .badge {
+        font-size: 0.72rem;
+        padding: 0.25rem 0.6rem;
+    }
+    .decor-oil {
+        width: 100px;
+    }
+    .decor-scratches {
+        width: 110px;
+    }
+    .decor-label-danger {
+        right: -5px;
+        top: 10px;
+    }
+
+    .info-section:nth-of-type(odd) h2 {
+        margin-left: -0.5rem;
+        font-size: 1rem;
+        padding: calc(0.2rem - 3px) 0.8rem calc(0.2rem + 3px) 1.2rem;
+    }
+    .info-section:nth-of-type(even) h2 {
+        margin-right: -0.5rem;
+        font-size: 1rem;
+        padding: calc(0.2rem - 3px) 1.2rem calc(0.2rem + 3px) 0.8rem;
+    }
+    .stats-panel {
+        overflow: visible;
+    }
+    .stats-panel h3 {
+        font-size: 0.75rem;
+        padding: 0.15rem 0.4rem;
+        letter-spacing: 0px;
+        transform: skewX(-4deg) rotate(-1deg);
+    }
+    .c-screw-l1 {
+        left: -5px !important;
+        top: -6px !important;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+
