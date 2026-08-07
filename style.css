@@ -2072,10 +2072,27 @@ body::after {
         padding: 1.5rem 0.8rem;
         left: -6px;
     }
-    .profile-photo-container {
-        width: 180px;
-        height: 180px;
-        margin-bottom: 1.2rem;
+    .profile-photo-dial {
+        width: 280px;
+        height: 280px;
+        margin-bottom: 0.8rem;
+    }
+    .profile-photo-dial .profile-photo-container {
+        width: 175px;
+        height: 175px;
+    }
+    .tap-indicator-wrapper {
+        bottom: 12px;
+    }
+    .tap-indicator-tape-img {
+        width: 168px;
+    }
+    .hazard-subtitle-tape {
+        width: calc(100% + 1.6rem);
+        margin-left: -0.8rem;
+        margin-right: -0.8rem;
+        padding: 0.5rem 1rem;
+        font-size: 1.15rem;
     }
     .profile-name {
         margin-top: calc(-2.1rem - 5px); /* Desplazado 5px hacia arriba */
@@ -2100,12 +2117,12 @@ body::after {
         top: 10px;
     }
 
-    .info-section:nth-of-type(odd) h2 {
+    .info-section:nth-of-type(odd) h2, .info-section.title-left h2 {
         margin-left: -0.5rem;
         font-size: 1rem;
         padding: calc(0.2rem - 3px) 0.8rem calc(0.2rem + 3px) 1.2rem;
     }
-    .info-section:nth-of-type(even) h2 {
+    .info-section:nth-of-type(even) h2, .info-section.title-right h2 {
         margin-right: -0.5rem;
         font-size: 1rem;
         padding: calc(0.2rem - 3px) 1.2rem calc(0.2rem + 3px) 0.8rem;
@@ -2134,17 +2151,17 @@ body::after {
 /* 1. Marco Engranaje / Dial de Foto de Perfil (Propuesta 3D) */
 .profile-photo-dial {
     position: relative;
-    width: 320px;
-    height: 320px;
+    width: 416px; /* Aumentado 30% desde 320px */
+    height: 416px; /* Aumentado 30% desde 320px */
     margin: 0 auto 1.2rem auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 2;
 }
 
 .gear-img-bg {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -2155,13 +2172,16 @@ body::after {
 }
 
 .profile-photo-dial:hover .gear-img-bg {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
 }
 
 .profile-photo-dial .profile-photo-container {
     position: absolute;
-    width: 200px; /* Tamaño del hueco interior de la brida */
-    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 260px; /* Aumentado 30% desde 200px */
+    height: 260px; /* Aumentado 30% desde 200px */
     border-radius: 50%;
     border: none;
     overflow: hidden;
@@ -2170,12 +2190,17 @@ body::after {
         inset 0 0 15px rgba(0, 0, 0, 0.9),
         0 0 20px rgba(0, 0, 0, 0.8);
     cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.profile-photo-dial .profile-photo-container:hover {
+    transform: translate(-50%, -50%) scale(1.05) rotate(1deg);
 }
 
 /* Indicador y LED en la posición exacta de la propuesta (Centro Inferior) */
 .tap-indicator-wrapper {
     position: absolute;
-    bottom: 22px; /* Alineado justo en el borde inferior de la foto/brida */
+    bottom: 29px; /* Proporcional a la nueva escala (+30%) */
     left: 50%;
     transform: translateX(-50%) rotate(-1deg);
     display: flex;
@@ -2187,7 +2212,7 @@ body::after {
 }
 
 .tap-indicator-tape-img {
-    width: 195px; /* Cubre la base de la foto y el borde de la brida */
+    width: 254px; /* Aumentado 30% desde 195px */
     height: auto;
     filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.7));
 }
@@ -2230,25 +2255,47 @@ body::after {
 .hazard-subtitle-tape {
     font-family: var(--font-section);
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: 950;
     color: #000 !important;
-    background: repeating-linear-gradient(45deg, 
-        var(--neon-yellow) 0px, var(--neon-yellow) 10px, 
-        #000 10px, #000 20px
-    );
-    padding: 0.4rem 1.8rem;
-    border: 3px solid #000;
-    box-shadow: 4px 4px 0px #000;
+    -webkit-text-stroke: 1.5px var(--neon-yellow);
+    filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.9));
+    text-shadow: 2px 2px 0px #000;
+    background: 
+        linear-gradient(170deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%),
+        repeating-linear-gradient(45deg, 
+            var(--neon-yellow) 0px, var(--neon-yellow) 15px, 
+            #0f1115 15px, #0f1115 30px
+        );
+    padding: 0.6rem 2rem;
+    border: 4px solid #000;
+    box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.6);
     transform: rotate(-1.5deg);
-    width: fit-content;
-    margin: 0.6rem auto 1.5rem auto;
-    clip-path: polygon(1% 15%, 98% 2%, 96% 85%, 2% 98%);
-    text-shadow: 
-        -1.5px -1.5px 0 var(--neon-yellow),
-         1.5px -1.5px 0 var(--neon-yellow),
-        -1.5px  1.5px 0 var(--neon-yellow),
-         1.5px  1.5px 0 var(--neon-yellow);
+    width: calc(100% + 3rem);
+    margin: 0.8rem -1.5rem 1.8rem -1.5rem;
+    /* Extremos rasgados en sierra con clip-path */
+    clip-path: polygon(
+        0% 15%, 1.5% 8%, 1% 25%, 2% 38%, 0.8% 55%, 2.2% 72%, 1.2% 88%, 0% 95%,
+        99.5% 98%, 98.2% 88%, 99.2% 73%, 97.8% 59%, 99% 42%, 97.5% 26%, 98.8% 12%, 100% 2%
+    );
     z-index: 3;
+    position: relative;
+}
+
+/* Folds/creases realism texture using CSS overlay */
+.hazard-subtitle-tape::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(135deg, 
+        rgba(0,0,0,0) 0px, rgba(0,0,0,0) 25px, 
+        rgba(255,255,255,0.18) 26px, rgba(0,0,0,0.22) 28px, 
+        rgba(0,0,0,0) 30px
+    );
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* 3. Panel de Breaker de Ficha Técnica (Estadísticas) */
@@ -2418,23 +2465,23 @@ body::after {
 /* Responsividad para dial de fotos en móviles */
 @media (max-width: 480px) {
     .profile-photo-dial {
-        width: 250px;
-        height: 250px;
+        width: 325px; /* Escalado +30% de 250px */
+        height: 325px; /* Escalado +30% de 250px */
         margin-bottom: 1rem;
     }
     .profile-photo-dial .profile-photo-container {
-        width: 156px;
-        height: 156px;
+        width: 203px; /* Escalado +30% de 156px */
+        height: 203px; /* Escalado +30% de 156px */
     }
     .tap-indicator-wrapper {
-        bottom: 12px;
+        bottom: 15px;
     }
     .tap-indicator-tape-img {
-        width: 150px;
+        width: 195px; /* Escalado +30% de 150px */
     }
     .tap-indicator-led {
-        width: 11px;
-        height: 11px;
+        width: 13px;
+        height: 13px;
     }
     .profile-title-container {
         margin-top: -1.7rem;
@@ -2736,6 +2783,59 @@ body::after {
     }
     .stat-gauge-card {
         padding: 0.6rem 0.5rem;
+    }
+}
+
+/* Estilos para distribución responsiva en bloques de pantalla (Mobile snap slides) */
+.viewport-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 92dvh;
+    padding: 1.5rem 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.pokemon-card-layout-single {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Clases explícitas para títulos Dymo para no depender del orden del DOM */
+.info-section.title-left h2 {
+    align-self: flex-start;
+    margin-left: -2rem;
+    transform: rotate(-2.5deg) !important;
+    clip-path: polygon(2% 2%, 94% 22%, 98% 78%, 6% 98%) !important;
+    text-align: left;
+    padding: calc(0.3rem - 3px) 1.6rem calc(0.3rem + 3px) 2.4rem !important;
+}
+
+.info-section.title-right h2 {
+    align-self: flex-end;
+    margin-right: -2rem;
+    transform: rotate(2deg) !important;
+    clip-path: polygon(6% 22%, 98% 2%, 94% 78%, 2% 98%) !important;
+    text-align: right;
+    padding: calc(0.3rem - 3px) 2.4rem calc(0.3rem + 3px) 1.6rem !important;
+}
+
+/* Colores de títulos explícitos */
+.info-section.title-green h2 { background: var(--neon-green) !important; }
+.info-section.title-blue h2 { background: var(--neon-blue) !important; }
+.info-section.title-pink h2 { background: var(--neon-pink) !important; }
+.info-section.title-yellow h2 { background: #fbbf24 !important; }
+.info-section.title-purple h2 { background: var(--neon-purple) !important; }
+
+/* Evitar que se desborden de su contenedor y se centren en desktop */
+@media (min-width: 480px) {
+    .viewport-block {
+        min-height: auto;
+        padding: 1.2rem 0;
     }
 }
 
