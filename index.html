@@ -18,6 +18,37 @@
 
 <body class="workshop-background">
 
+    <!-- PANTALLA DE CARGA (SPLASH SCREEN) INTERACTIVA -->
+    <div id="splash-screen" class="splash-container" role="dialog" aria-modal="true" aria-label="Pantalla de carga de Taller La Perlita">
+        <!-- Ruido de estática de TV CRT de fondo -->
+        <div class="crt-noise" aria-hidden="true"></div>
+        <div class="crt-lines" aria-hidden="true"></div>
+        
+        <div class="splash-content">
+            <!-- Letrero parpadeante neón de taller -->
+            <div class="workshop-sign">
+                <span class="sign-flicker-slow">TALLER</span>
+                <br>
+                <span class="sign-flicker-fast">LA PERLITA</span>
+            </div>
+            
+            <!-- Etiqueta de advertencia industrial con tornillos -->
+            <div class="hazard-label">
+                <img src="Tornillo - 1.png" class="screw-hazard screw-hazard-tl" alt="" aria-hidden="true">
+                <img src="Tornillo - 2.png" class="screw-hazard screw-hazard-tr" alt="" aria-hidden="true">
+                <img src="Tornillo - 3.png" class="screw-hazard screw-hazard-bl" alt="" aria-hidden="true">
+                <img src="Tornillo - 4.png" class="screw-hazard screw-hazard-br" alt="" aria-hidden="true">
+                <span class="hazard-icon">⚠️</span> CUIDADO CON EL PERRO
+            </div>
+            
+            <!-- Botón de encendido analógico Engine Start/Stop -->
+            <button id="btn-enter" class="splash-btn engine-start-btn" onclick="startApp()" aria-label="Entrar a la ficha de Bruto">
+                <span class="btn-ring"></span>
+                <span class="btn-text">ENGINE<br>START</span>
+            </button>
+        </div>
+    </div>
+
     <!-- Resplandores de fondo temáticos (azul policía y verde neón) -->
     <div class="bg-glow bg-glow-blue"></div>
     <div class="bg-glow bg-glow-green"></div>
@@ -49,15 +80,30 @@
                 <img src="grafitti_mancha.png" class="decor-graffiti" alt="" aria-hidden="true">
             </div>
 
-            <!-- Foto de Cabecera Circular (Galería) -->
-            <div class="profile-photo-container" id="profile-photo" onclick="openGallery()" tabindex="0" role="button"
-                aria-label="Abrir galería de fotos de Bruto">
-                <img src="bruto_pic_1.jpg" alt="Foto de perfil de Bruto" class="profile-photo-img">
-                <div class="profile-photo-hint">Ver fotos (5)</div>
+            <!-- Contenedor del Dial Industrial de la Foto (Brida Industrial 3D) -->
+            <div class="profile-photo-dial">
+                <!-- Imagen de la brida industrial de fondo -->
+                <img src="brida_industrial.png" class="gear-img-bg" alt="" aria-hidden="true">
+
+                <!-- Foto de Cabecera Circular (Galería) -->
+                <div class="profile-photo-container" id="profile-photo" onclick="openGallery()" tabindex="0" role="button"
+                    aria-label="Abrir galería de fotos de Bruto">
+                    <img src="bruto_pic_1.jpg" alt="Foto de perfil de Bruto" class="profile-photo-img">
+                    <div class="profile-photo-hint">Ver fotos (5)</div>
+                </div>
+
+                <!-- Indicador [TAP TO VIEW] y LED en la posición exacta (Centro Inferior) -->
+                <div class="tap-indicator-wrapper" aria-hidden="true">
+                    <div class="tap-indicator-led"></div>
+                    <img src="cinta_tap_view.png" class="tap-indicator-tape-img" alt="Tap to View">
+                </div>
             </div>
 
-            <h1 class="profile-name">BRUTO</h1>
-            <p class="profile-subtitle">Tu perro de taller<br>de confianza</p>
+            <!-- Contenedor del Título de Metal y Stickers de la Propuesta -->
+            <div class="profile-title-container">
+                <img src="placa_bruto_stickers.png" class="profile-title-img" alt="BRUTO">
+            </div>
+            <p class="profile-subtitle hazard-subtitle-tape">Tu perro de taller<br>de confianza</p>
 
             <div class="tag-list" style="margin-top: 0.8rem; gap: 0.5rem;">
                 <span class="badge" tabindex="0" role="button" aria-haspopup="dialog"
@@ -135,104 +181,110 @@
             <div class="pokemon-card-layout">
                 <!-- Carta Pokémon Contenedor Real Edge-to-Edge -->
                 <div class="pokemon-card-container" id="bruto-card">
+                    <div class="card-shine" id="card-shine"></div>
                     <img src="bruto_adoptado.jpg" alt="Carta Bruto GX - Forma Adoptada"
                         class="pokemon-card-img card-equipped-img">
                     <img src="bruto_callejero.jpg" alt="Carta Bruto GX - Forma Callejera"
                         class="pokemon-card-img card-unequipped-img">
                 </div>
 
-                <!-- Panel de Estadísticas Detalladas con Barras Dinámicas -->
+                <!-- Panel de Ficha Técnica Tridimensional estilo Caja de Breakers -->
                 <div class="stats-panel" id="stats-panel">
                     <h3>Ficha Técnica</h3>
+                    
+                    <div class="stats-grid-container">
+                        <!-- HP (Verde Neón) -->
+                        <div class="stat-gauge-card">
+                            <div class="gauge-dial-wrapper">
+                                <div class="gauge-dial dial-hp">
+                                    <div class="gauge-scale"></div>
+                                    <div class="gauge-needle" id="needle-hp" style="transform: rotate(42deg);"></div>
+                                    <div class="gauge-center-cap"></div>
+                                </div>
+                            </div>
+                            <div class="stat-info-compact">
+                                <span class="stat-label">HP</span>
+                                <span class="stat-value-lcd" id="lbl-hp">135</span>
+                            </div>
+                            <div class="neon-bar-track track-hp">
+                                <div class="neon-bar-fill fill-hp" id="fill-hp" style="height: 67.5%;"></div>
+                            </div>
+                        </div>
 
-                    <!-- Barras de Estadísticas Dinámicas estilo Grunge Punk -->
-                    <div class="stats-bars-container">
-                        <!-- HP -->
-                        <div class="stat-row">
-                            <div class="stat-bar-wrapper">
-                                <span class="stat-icon-badge badge-hp">💀</span>
-                                <div class="stat-progress-track">
-                                    <div class="stat-progress-fill fill-hp" id="fill-hp" style="width: 67.5%;"></div>
+                        <!-- ATTACK (Magenta Neón) -->
+                        <div class="stat-gauge-card">
+                            <div class="gauge-dial-wrapper">
+                                <div class="gauge-dial dial-atk">
+                                    <div class="gauge-scale"></div>
+                                    <div class="gauge-needle" id="needle-atk" style="transform: rotate(68deg);"></div>
+                                    <div class="gauge-center-cap"></div>
                                 </div>
                             </div>
-                            <div class="stat-details">
-                                <span class="stat-name">HP</span>
-                                <span class="stat-number" id="lbl-hp">135</span>
+                            <div class="stat-info-compact">
+                                <span class="stat-label">ATTACK</span>
+                                <span class="stat-value-lcd" id="lbl-atk">157</span>
+                            </div>
+                            <div class="neon-bar-track track-atk">
+                                <div class="neon-bar-fill fill-atk" id="fill-atk" style="height: 78.5%;"></div>
                             </div>
                         </div>
-                        <!-- ATK -->
-                        <div class="stat-row">
-                            <div class="stat-bar-wrapper">
-                                <span class="stat-icon-badge badge-atk">⚡</span>
-                                <div class="stat-progress-track">
-                                    <div class="stat-progress-fill fill-atk" id="fill-atk" style="width: 78.5%;"></div>
+
+                        <!-- DEFENSE (Azul Neón) -->
+                        <div class="stat-gauge-card">
+                            <div class="gauge-dial-wrapper">
+                                <div class="gauge-dial dial-def">
+                                    <div class="gauge-scale"></div>
+                                    <div class="gauge-needle" id="needle-def" style="transform: rotate(25deg);"></div>
+                                    <div class="gauge-center-cap"></div>
                                 </div>
                             </div>
-                            <div class="stat-details">
-                                <span class="stat-name">ATK</span>
-                                <span class="stat-number" id="lbl-atk">157</span>
+                            <div class="stat-info-compact">
+                                <span class="stat-label">DEFENSE</span>
+                                <span class="stat-value-lcd" id="lbl-def">121</span>
+                            </div>
+                            <div class="neon-bar-track track-def">
+                                <div class="neon-bar-fill fill-def" id="fill-def" style="height: 60.5%;"></div>
                             </div>
                         </div>
-                        <!-- DEF -->
-                        <div class="stat-row">
-                            <div class="stat-bar-wrapper">
-                                <span class="stat-icon-badge badge-def">🛡️</span>
-                                <div class="stat-progress-track">
-                                    <div class="stat-progress-fill fill-def" id="fill-def" style="width: 60.5%;"></div>
+
+                        <!-- SPEED (Cian Neón) -->
+                        <div class="stat-gauge-card">
+                            <div class="gauge-dial-wrapper">
+                                <div class="gauge-dial dial-spd">
+                                    <div class="gauge-scale"></div>
+                                    <div class="gauge-needle" id="needle-spd" style="transform: rotate(-80deg);"></div>
+                                    <div class="gauge-center-cap"></div>
                                 </div>
                             </div>
-                            <div class="stat-details">
-                                <span class="stat-name">DEF</span>
-                                <span class="stat-number" id="lbl-def">121</span>
+                            <div class="stat-info-compact">
+                                <span class="stat-label">SPEED</span>
+                                <span class="stat-value-lcd" id="lbl-spd">32</span>
+                            </div>
+                            <div class="neon-bar-track track-spd">
+                                <div class="neon-bar-fill fill-spd" id="fill-spd" style="height: 16%;"></div>
                             </div>
                         </div>
-                        <!-- VEL -->
-                        <div class="stat-row">
-                            <div class="stat-bar-wrapper">
-                                <span class="stat-icon-badge badge-spd">💨</span>
-                                <div class="stat-progress-track">
-                                    <div class="stat-progress-fill fill-spd" id="fill-spd" style="width: 16%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-details">
-                                <span class="stat-name">VEL</span>
-                                <span class="stat-number" id="lbl-spd">32</span>
-                            </div>
-                        </div>
-                        <!-- S.ATK -->
-                        <div class="stat-row">
-                            <div class="stat-bar-wrapper">
-                                <span class="stat-icon-badge badge-satk">🔥</span>
-                                <div class="stat-progress-track">
-                                    <div class="stat-progress-fill fill-satk" id="fill-satk" style="width: 32.5%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-details">
-                                <span class="stat-name">S.ATK</span>
-                                <span class="stat-number" id="lbl-satk">65</span>
-                            </div>
-                        </div>
-                        <!-- S.DEF -->
-                        <div class="stat-row">
-                            <div class="stat-bar-wrapper">
-                                <span class="stat-icon-badge badge-sdef">⚙️</span>
-                                <div class="stat-progress-track">
-                                    <div class="stat-progress-fill fill-sdef" id="fill-sdef" style="width: 35%;"></div>
-                                </div>
-                            </div>
-                            <div class="stat-details">
-                                <span class="stat-name">S.DEF</span>
-                                <span class="stat-number" id="lbl-sdef">70</span>
-                            </div>
-                        </div>
+                    </div>
+
+                    <!-- Elementos ocultos para evitar fallos de variables de S.ATK y S.DEF -->
+                    <div style="display: none;">
+                        <span id="lbl-satk">65</span>
+                        <span id="lbl-sdef">70</span>
+                        <div id="fill-satk"></div>
+                        <div id="fill-sdef"></div>
                     </div>
 
                     <div class="stat-total">
-                        <div class="stat-total-badge">
-                            TOTAL: <span id="stat-val-total">580</span>
+                        <span class="total-label-metal">TOTAL</span>
+                        <div class="odometer-lcd-panel">
+                            <div class="odometer-screws-l"></div>
+                            <div class="odometer-lcd" id="stat-val-total">000580</div>
+                            <div class="odometer-screws-r"></div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
             </div>
         </section>
 
@@ -338,6 +390,13 @@
         <div class="gallery-modal-content">
             <button class="gallery-close-btn" onclick="closeGallery()" aria-label="Cerrar galería">&times;</button>
             <div class="gallery-main-viewport">
+                <!-- Capa de osciloscopio digital (cuadrícula y lecturas de telemetría) -->
+                <div class="crt-telemetry-grid" aria-hidden="true">
+                    <div class="tel-item tel-tl">SYS_DIAG: ACTIVE</div>
+                    <div class="tel-item tel-tr">TEMP: 98°C</div>
+                    <div class="tel-item tel-bl">PHOTO_SCANNER_v1.2</div>
+                    <div class="tel-item tel-br">BRUTO_DATA_LOCK</div>
+                </div>
                 <div class="gallery-slider" id="gallery-slider">
                     <img src="bruto_pic_1.jpg" alt="Bruto 1" class="gallery-slide-img">
                     <img src="bruto_pic_2.jpg" alt="Bruto 2" class="gallery-slide-img">
@@ -387,6 +446,115 @@
             lastTouchEnd = now;
         }, { passive: false });
 
+        // --- LÓGICA DE AUDIO Y EXPERIENCIA MULTIMEDIA (VANILLA) ---
+        let ambientAudio = new Audio('taller_ambiente.mp3');
+        ambientAudio.loop = true;
+        let barkAudio = new Audio('ladrido_perro.mp3');
+        
+        let audioCtx = null;
+        let humOsc = null;
+
+        // Iniciar sonidos de ambiente del taller
+        function playAmbientSounds() {
+            ambientAudio.play().catch(err => {
+                console.log("No se pudo reproducir taller_ambiente.mp3 local. Iniciando sintetizador AC Web Audio API como fallback.");
+                try {
+                    if (!audioCtx) {
+                        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    }
+                    if (audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+                    
+                    // Hum eléctrico de 60Hz de taller
+                    humOsc = audioCtx.createOscillator();
+                    const humGain = audioCtx.createGain();
+                    humOsc.type = 'sawtooth';
+                    humOsc.frequency.setValueAtTime(60, audioCtx.currentTime);
+                    humGain.gain.setValueAtTime(0.012, audioCtx.currentTime); // Bajo volumen
+                    
+                    const lowpass = audioCtx.createBiquadFilter();
+                    lowpass.type = 'lowpass';
+                    lowpass.frequency.setValueAtTime(140, audioCtx.currentTime);
+                    
+                    humOsc.connect(lowpass);
+                    lowpass.connect(humGain);
+                    humGain.connect(audioCtx.destination);
+                    humOsc.start();
+                } catch(e) {
+                    console.warn("Web Audio API no soportado:", e);
+                }
+            });
+        }
+
+        // Sonido de pitido CRT descendente al apagar
+        function playCrtPowerOffSound() {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(14000, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.55);
+                
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.55);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.55);
+            } catch(e) {
+                console.error(e);
+            }
+        }
+
+        // Arrancar la aplicación desde el Splash Screen
+        function startApp() {
+            const splash = document.getElementById('splash-screen');
+            const btn = document.getElementById('btn-enter');
+            
+            // Deshabilitar botón durante la animación
+            btn.disabled = true;
+
+            // Inicializar giroscopio y contexto de audio tras la interacción del usuario
+            try {
+                initGyroscope();
+                initAudioContext();
+            } catch(e) {
+                console.warn("Error al inicializar sensores o audio en interacción:", e);
+            }
+
+            // 1. Apagar zumbido de taller e iniciar ladrido
+            if (humOsc) {
+                try { humOsc.stop(); } catch(e){}
+            }
+            ambientAudio.pause();
+            
+            // Intentar reproducir el ladrido de perro
+            barkAudio.play().catch(err => {
+                console.log("No se pudo cargar o reproducir el mp3 local de ladrido_perro.mp3.");
+            });
+
+            // 2. Ejecutar sonido analógico CRT
+            playCrtPowerOffSound();
+
+            // 3. Ejecutar transición de apagado CRT en CSS
+            splash.classList.add('crt-shutdown');
+
+            // 4. Ocultar físicamente la pantalla tras completarse el efecto
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 550);
+        }
+
         // Estado del collar
         let collarEquipado = true;
 
@@ -400,8 +568,7 @@
             ratios: [0.475, 0.585, 0.40, 0.46, 0.35, 0.325]
         };
 
-        // Actualizar barras de estadísticas y textos
-        // Actualizar barras de estadísticas y textos
+        // Actualizar manómetros de estadísticas, barras verticales y textos
         function updateStats(state) {
             document.getElementById('lbl-hp').textContent = state.hp;
             document.getElementById('lbl-atk').textContent = state.atk;
@@ -410,17 +577,26 @@
             document.getElementById('lbl-sdef').textContent = state.sdef;
             document.getElementById('lbl-satk').textContent = state.satk;
 
-            document.getElementById('fill-hp').style.width = (state.ratios[0] * 100) + '%';
-            document.getElementById('fill-atk').style.width = (state.ratios[1] * 100) + '%';
-            document.getElementById('fill-def').style.width = (state.ratios[2] * 100) + '%';
-            document.getElementById('fill-spd').style.width = (state.ratios[3] * 100) + '%';
-            document.getElementById('fill-sdef').style.width = (state.ratios[4] * 100) + '%';
-            document.getElementById('fill-satk').style.width = (state.ratios[5] * 100) + '%';
+            // Calcular rotación de agujas: -120deg a 120deg (240 grados de recorrido total)
+            document.getElementById('needle-hp').style.transform = `rotate(${(state.ratios[0] * 240) - 120}deg)`;
+            document.getElementById('needle-atk').style.transform = `rotate(${(state.ratios[1] * 240) - 120}deg)`;
+            document.getElementById('needle-def').style.transform = `rotate(${(state.ratios[2] * 240) - 120}deg)`;
+            document.getElementById('needle-spd').style.transform = `rotate(${(state.ratios[3] * 240) - 120}deg)`;
+
+            // Actualizar altura (height) de las barras de neón verticales
+            document.getElementById('fill-hp').style.height = (state.ratios[0] * 100) + '%';
+            document.getElementById('fill-atk').style.height = (state.ratios[1] * 100) + '%';
+            document.getElementById('fill-def').style.height = (state.ratios[2] * 100) + '%';
+            document.getElementById('fill-spd').style.height = (state.ratios[3] * 100) + '%';
+
+            // Actualizar odómetro con ceros a la izquierda (total de 6 dígitos)
+            document.getElementById('stat-val-total').textContent = String(state.total).padStart(6, '0');
         }
 
         // Alternar equipamiento del collar
         function toggleCollar() {
             collarEquipado = !collarEquipado;
+            playMetalImpactSound();
 
             const widget = document.getElementById('collar-widget');
             const statusText = document.getElementById('collar-status');
@@ -429,6 +605,14 @@
             const statTotal = document.getElementById('stat-val-total');
 
             const state = collarEquipado ? stateEquipped : stateUnequipped;
+
+            // Efecto shake de impacto metálico
+            card.classList.add('shake-impact');
+            statsPanel.classList.add('shake-impact');
+            setTimeout(() => {
+                card.classList.remove('shake-impact');
+                statsPanel.classList.remove('shake-impact');
+            }, 500);
 
             if (collarEquipado) {
                 widget.classList.remove('unequipped');
@@ -452,6 +636,7 @@
 
         // --- PREFERENCIAS INTERACTIVAS (GUSTOS & DISGUSTOS) ---
         function togglePref(type) {
+            playRatchetSound();
             const likesGroup = document.getElementById('pref-group-likes');
             const dislikesGroup = document.getElementById('pref-group-dislikes');
             const likesContent = document.getElementById('content-likes');
@@ -575,6 +760,16 @@
             // Cargar estado inicial
             updateStats(stateEquipped);
 
+            // Iniciar sonido ambiental del taller al primer toque sobre la pantalla de carga (Splash)
+            const splash = document.getElementById('splash-screen');
+            const initAmbient = () => {
+                playAmbientSounds();
+                splash.removeEventListener('click', initAmbient);
+                splash.removeEventListener('touchstart', initAmbient);
+            };
+            splash.addEventListener('click', initAmbient);
+            splash.addEventListener('touchstart', initAmbient, { passive: true });
+
             // Manejo de eventos de teclado en el widget del collar (Accesibilidad)
             const collarWidget = document.getElementById('collar-widget');
             collarWidget.addEventListener('keydown', function (e) {
@@ -642,6 +837,7 @@
         let activeTooltip = null;
 
         function showBadgeTooltip(badge) {
+            playRatchetSound();
             // Cerrar tooltip anterior
             if (activeTooltip) {
                 activeTooltip.remove();
@@ -677,6 +873,7 @@
 
         function closeTooltip(e) {
             if (e) e.stopPropagation();
+            playRatchetSound();
             if (activeTooltip) {
                 activeTooltip.remove();
                 activeTooltip = null;
@@ -689,6 +886,205 @@
             if (activeTooltip && !activeTooltip.contains(e.target) && !e.target.classList.contains('badge')) {
                 closeTooltip();
             }
+        }
+
+        // --- WEB AUDIO API (SÍNTESIS EN TIEMPO REAL - TALLER MECÁNICO) ---
+        function initAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Golpe de llave de taller / Impacto metálico
+        function playMetalImpactSound() {
+            try {
+                initAudioContext();
+                if (!audioCtx) return;
+
+                const now = audioCtx.currentTime;
+                const masterGain = audioCtx.createGain();
+                masterGain.gain.setValueAtTime(0.001, now);
+                masterGain.gain.linearRampToValueAtTime(0.18, now + 0.005);
+                masterGain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+                const frequencies = [295, 580, 890, 1180, 1550];
+                const gains = [0.08, 0.06, 0.04, 0.02, 0.01];
+
+                frequencies.forEach((f, idx) => {
+                    const osc = audioCtx.createOscillator();
+                    const oscGain = audioCtx.createGain();
+
+                    osc.type = (idx === 0) ? 'triangle' : 'sine';
+                    osc.frequency.setValueAtTime(f, now);
+                    osc.frequency.exponentialRampToValueAtTime(f - 10, now + 0.15);
+
+                    oscGain.gain.setValueAtTime(gains[idx], now);
+                    oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+                    osc.connect(oscGain);
+                    oscGain.connect(masterGain);
+
+                    osc.start(now);
+                    osc.stop(now + 0.45);
+                });
+
+                // Ruido blanco de impacto
+                const bufferSize = audioCtx.sampleRate * 0.05;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = Math.random() * 2 - 1;
+                }
+                const noiseSource = audioCtx.createBufferSource();
+                noiseSource.buffer = buffer;
+
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.setValueAtTime(1000, now);
+                filter.Q.value = 3.0;
+
+                const noiseGain = audioCtx.createGain();
+                noiseGain.gain.setValueAtTime(0.05, now);
+                noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+
+                noiseSource.connect(filter);
+                filter.connect(noiseGain);
+                noiseGain.connect(masterGain);
+
+                masterGain.connect(audioCtx.destination);
+                noiseSource.start(now);
+            } catch(e) {
+                console.error("Error al sintetizar el sonido de impacto metálico:", e);
+            }
+        }
+
+        // Carraca / Trinquete de mecánico
+        function playRatchetSound() {
+            try {
+                initAudioContext();
+                if (!audioCtx) return;
+
+                const now = audioCtx.currentTime;
+                const clickCount = 3;
+                const clickInterval = 0.045;
+
+                for (let c = 0; c < clickCount; c++) {
+                    const clickTime = now + (c * clickInterval);
+
+                    const clickGain = audioCtx.createGain();
+                    clickGain.gain.setValueAtTime(0.001, clickTime);
+                    clickGain.gain.linearRampToValueAtTime(0.08, clickTime + 0.002);
+                    clickGain.gain.exponentialRampToValueAtTime(0.001, clickTime + 0.025);
+
+                    const osc = audioCtx.createOscillator();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(2200, clickTime);
+                    osc.frequency.exponentialRampToValueAtTime(800, clickTime + 0.02);
+
+                    const bufferSize = audioCtx.sampleRate * 0.02;
+                    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                    const data = buffer.getChannelData(0);
+                    for (let i = 0; i < bufferSize; i++) {
+                        data[i] = Math.random() * 2 - 1;
+                    }
+                    const noiseSource = audioCtx.createBufferSource();
+                    noiseSource.buffer = buffer;
+
+                    const filter = audioCtx.createBiquadFilter();
+                    filter.type = 'highpass';
+                    filter.frequency.setValueAtTime(2500, clickTime);
+
+                    const noiseGain = audioCtx.createGain();
+                    noiseGain.gain.setValueAtTime(0.04, clickTime);
+                    noiseGain.gain.exponentialRampToValueAtTime(0.001, clickTime + 0.018);
+
+                    osc.connect(clickGain);
+                    noiseSource.connect(filter);
+                    filter.connect(noiseGain);
+
+                    clickGain.connect(audioCtx.destination);
+                    noiseGain.connect(audioCtx.destination);
+
+                    osc.start(clickTime);
+                    osc.stop(clickTime + 0.035);
+                    noiseSource.start(clickTime);
+                }
+            } catch(e) {
+                console.error("Error al sintetizar el sonido de carraca:", e);
+            }
+        }
+
+        // --- PARALLAX 3D HOLOGRÁFICO CON GIROSCOPIO / MOUSE ---
+        const cardBruto = document.getElementById('bruto-card');
+        const shineBruto = document.getElementById('card-shine');
+
+        // Movimiento con cursor (Escritorio)
+        cardBruto.addEventListener('mousemove', (e) => {
+            const rect = cardBruto.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const xc = rect.width / 2;
+            const yc = rect.height / 2;
+            const dx = x - xc;
+            const dy = y - yc;
+
+            const tiltX = -(dy / yc) * 12;
+            const tiltY = (dx / xc) * 12;
+
+            cardBruto.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+            const px = (x / rect.width) * 100;
+            const py = (y / rect.height) * 100;
+            shineBruto.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255, 255, 255, 0.18) 0%, transparent 65%)`;
+        });
+
+        cardBruto.addEventListener('mouseleave', () => {
+            cardBruto.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            shineBruto.style.background = 'none';
+        });
+
+        // Movimiento con giroscopio (Celular)
+        function initGyroscope() {
+            if (typeof DeviceOrientationEvent !== 'undefined') {
+                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    DeviceOrientationEvent.requestPermission()
+                        .then(permissionState => {
+                            if (permissionState === 'granted') {
+                                window.addEventListener('deviceorientation', handleOrientation);
+                            }
+                        })
+                        .catch(console.error);
+                } else {
+                    window.addEventListener('deviceorientation', handleOrientation);
+                }
+            }
+        }
+
+        let lastBeta = 0;
+        let lastGamma = 0;
+        function handleOrientation(event) {
+            let beta = event.beta;
+            let gamma = event.gamma;
+
+            if (beta === null || gamma === null) return;
+
+            beta = Math.max(-30, Math.min(30, beta));
+            gamma = Math.max(-30, Math.min(30, gamma));
+
+            lastBeta = lastBeta + (beta - lastBeta) * 0.1;
+            lastGamma = lastGamma + (gamma - lastGamma) * 0.1;
+
+            const tiltX = -(lastBeta / 30) * 12;
+            const tiltY = (lastGamma / 30) * 12;
+
+            cardBruto.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+            const px = 50 + (tiltY * 3);
+            const py = 50 + (tiltX * 3);
+            shineBruto.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255, 255, 255, 0.18) 0%, transparent 65%)`;
         }
     </script>
 </body>

@@ -810,12 +810,23 @@ body::after {
     border-radius: 4px;
     box-shadow:
         0 12px 30px rgba(0, 0, 0, 0.9);
-    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     background: #000;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
-.pokemon-card-container:hover {
-    transform: translateY(-5px) scale(1.035) rotate(0.5deg);
+.card-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    mix-blend-mode: color-dodge;
+    transition: background 0.15s ease-out;
+    border-radius: 4px;
 }
 
 .pokemon-card-img {
@@ -1698,6 +1709,359 @@ body::after {
         transform: skewX(-6deg) rotate(-1deg);
     }
 }
+}
+
+/* ==========================================================================
+   DECONSTRUCCIÓN GRUNGE - INCLINACIÓN ASIMÉTRICA Y CINTAS ADHESIVAS
+   ========================================================================== */
+
+/* Rotación asimétrica moderada para mantener legibilidad y dar look fanzine */
+.info-section:nth-of-type(odd) {
+    transform: rotate(-0.5deg);
+}
+
+.info-section:nth-of-type(even) {
+    transform: rotate(0.6deg);
+}
+
+/* Efecto visual de cinta adhesiva industrial (Duct / Scotch Tape) pegada en esquinas */
+.info-section::before {
+    content: "";
+    position: absolute;
+    width: 68px;
+    height: 24px;
+    backdrop-filter: blur(1.5px);
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.25), 
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 9;
+    pointer-events: none;
+}
+
+/* Scotch tape ámbar translúcida en secciones impares */
+.info-section:nth-of-type(odd)::before {
+    top: -10px;
+    left: 22px;
+    background: linear-gradient(
+        135deg,
+        rgba(251, 191, 36, 0.26) 0%,
+        rgba(245, 158, 11, 0.32) 50%,
+        rgba(217, 119, 6, 0.24) 100%
+    );
+    border: 1px solid rgba(251, 191, 36, 0.18);
+    transform: rotate(-14deg);
+    border-radius: 2px;
+}
+
+/* Duct tape gris plateado translúcida en secciones pares */
+.info-section:nth-of-type(even)::before {
+    top: -12px;
+    right: 25px;
+    background: linear-gradient(
+        135deg,
+        rgba(156, 163, 175, 0.32) 0%,
+        rgba(107, 114, 128, 0.38) 50%,
+        rgba(75, 85, 99, 0.28) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transform: rotate(16deg);
+    border-radius: 1px;
+}
+
+
+/* ==========================================================================
+   PANTALLA DE CARGA (SPLASH SCREEN) INTERACTIVA CON ESTILO CRT / VHS
+   ========================================================================== */
+
+.splash-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsl(220, 18%, 4%);
+    background-image: 
+        linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.92) 100%),
+        url('textura_chapa.png');
+    background-size: cover, 420px 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    overflow: hidden;
+}
+
+/* Estática de TV analógica con filtro de ruido SVG inline */
+.crt-noise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.6) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.16'/%3E%3C/svg%3E");
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 1;
+    animation: static-flicker 0.1s infinite;
+}
+
+/* Líneas de barrido de fósforo CRT */
+.crt-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.3) 50%
+    );
+    background-size: 100% 5px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.splash-content {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    max-width: 90%;
+    width: 320px;
+    padding: 2.2rem 1.5rem;
+    background: hsla(220, 18%, 6%, 0.88);
+    border: 3px solid #334155;
+    border-radius: 6px;
+    box-shadow: 
+        inset 0 1px 2px rgba(255, 255, 255, 0.1), 
+        0 15px 30px rgba(0, 0, 0, 0.8);
+    transform: rotate(-1deg);
+}
+
+/* Letrero neón de taller mecánico parpadeante */
+.workshop-sign {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    line-height: 1;
+    color: #0d1117;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sign-flicker-slow {
+    color: #fff;
+    -webkit-text-stroke: 1px var(--neon-blue);
+    text-shadow: 
+        0 0 4px var(--neon-blue-glow),
+        0 0 12px var(--neon-blue),
+        0 0 25px var(--neon-blue-glow);
+    animation: flicker-slow-anim 4s infinite alternate;
+}
+
+.sign-flicker-fast {
+    color: #fff;
+    -webkit-text-stroke: 1.2px var(--neon-green);
+    text-shadow: 
+        0 0 4px var(--neon-green-glow),
+        0 0 14px var(--neon-green),
+        0 0 28px var(--neon-green-glow);
+    animation: flicker-fast-anim 2.5s infinite alternate;
+}
+
+/* Etiqueta de advertencia industrial con tornillos */
+.hazard-label {
+    font-family: var(--font-dymo);
+    background: #000;
+    border: 2px solid var(--neon-orange);
+    color: var(--neon-orange);
+    font-size: 0.95rem;
+    font-weight: 900;
+    padding: 0.5rem 1.6rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 2.5rem;
+    box-shadow: 4px 4px 0 #000;
+    transform: rotate(2deg);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    position: relative;
+}
+
+.screw-hazard {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.8));
+    opacity: 0.85;
+}
+
+.screw-hazard-tl { top: 3px; left: 3px; transform: rotate(15deg); }
+.screw-hazard-tr { top: 3px; right: 3px; transform: rotate(-45deg); }
+.screw-hazard-bl { bottom: 3px; left: 3px; transform: rotate(80deg); }
+.screw-hazard-br { bottom: 3px; right: 3px; transform: rotate(-10deg); }
+
+.hazard-icon {
+    font-size: 1.1rem;
+    animation: pulse-danger 1s infinite alternate;
+}
+
+/* Botón industrial de encendido de motor (Engine Start/Stop) */
+.splash-btn {
+    font-family: var(--font-section) !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+}
+
+.engine-start-btn {
+    width: 125px;
+    height: 125px;
+    border-radius: 50% !important;
+    border: 5px solid #0f1216;
+    background: radial-gradient(circle, hsl(0, 90%, 48%) 0%, hsl(0, 95%, 32%) 70%, #000 100%);
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+    box-shadow:
+        0 0 0 4px #cbd5e1, /* Anillo cromado exterior */
+        0 8px 0px #000,
+        0 15px 25px rgba(0,0,0,0.8);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 1.2rem;
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.engine-start-btn .btn-text {
+    font-size: 1.15rem;
+    line-height: 1.05;
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+.engine-start-btn::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 255, 255, 0.35);
+    pointer-events: none;
+}
+
+.engine-start-btn:hover {
+    transform: scale(1.03);
+    background: radial-gradient(circle, hsl(0, 95%, 52%) 0%, hsl(0, 100%, 36%) 70%, #110000 100%);
+    box-shadow:
+        0 0 0 4px var(--neon-yellow),
+        0 8px 0px #000,
+        0 15px 30px rgba(0,0,0,0.9);
+}
+
+.engine-start-btn:active {
+    transform: translateY(6px) scale(0.98);
+    box-shadow:
+        0 0 0 4px var(--neon-yellow),
+        0 2px 0px #000,
+        0 5px 12px rgba(0,0,0,0.9);
+}
+
+.splash-btn:focus-visible {
+    border-color: var(--neon-yellow);
+    box-shadow: 0 0 15px var(--neon-yellow);
+}
+
+/* Animación CRT de apagado de pantalla */
+.crt-shutdown {
+    animation: crt-off-frame 0.52s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* ==========================================================================
+   ANIMACIONES DE EFECTOS
+   ========================================================================== */
+
+/* Glitch estática */
+@keyframes static-flicker {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-1px, 1px) scale(1.002); }
+    66% { transform: translate(1px, -1px) scale(0.998); }
+    100% { transform: translate(-1px, -1px) scale(1); }
+}
+
+/* Parpadeo neón de taller averiado */
+@keyframes flicker-slow-anim {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+        opacity: 0.99;
+        filter: brightness(1);
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+        opacity: 0.25;
+        filter: brightness(0.4);
+    }
+}
+
+@keyframes flicker-fast-anim {
+    0%, 9.999%, 12%, 41.999%, 45%, 45.999%, 48%, 78.999%, 80%, 100% {
+        opacity: 0.98;
+        filter: brightness(1);
+    }
+    10%, 11.999%, 42%, 44.999%, 46%, 47.999%, 79%, 79.999% {
+        opacity: 0.15;
+        filter: brightness(0.2);
+    }
+}
+
+@keyframes pulse-danger {
+    0% { transform: scale(1); filter: drop-shadow(0 0 1px var(--neon-orange)); }
+    100% { transform: scale(1.2); filter: drop-shadow(0 0 6px var(--neon-orange)); }
+}
+
+/* Apagado CRT analógico */
+@keyframes crt-off-frame {
+    0% {
+        transform: scale(1);
+        filter: brightness(1) contrast(1);
+    }
+    35% {
+        transform: scaleY(0.006) scaleX(1.08);
+        background-color: #fff;
+        filter: brightness(3.5) contrast(1.2);
+    }
+    70% {
+        transform: scaleY(0.006) scaleX(0.06);
+        background-color: #fff;
+        filter: brightness(6) contrast(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scaleY(0.006) scaleX(0);
+        background-color: #fff;
+        filter: brightness(12);
+        opacity: 0;
+    }
+}
+
+/* Sacudida de impacto metálico al alternar collar */
+.shake-impact {
+    animation: metal-shake 0.45s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+@keyframes metal-shake {
+    10%, 90% { transform: translate3d(-2px, 1px, 0) rotate(-0.5deg); }
+    20%, 80% { transform: translate3d(2px, -2px, 0) rotate(0.8deg); }
+    30%, 50%, 70% { transform: translate3d(-3px, 2px, 0) rotate(-1deg); }
+    40%, 60% { transform: translate3d(3px, -1px, 0) rotate(1deg); }
+}
 
 /* Responsividad extrema para móviles de 320px-360px */
 @media (max-width: 360px) {
@@ -1760,6 +2124,618 @@ body::after {
         top: -6px !important;
         width: 18px;
         height: 18px;
+    }
+}
+
+/* ==========================================================================
+   NUEVOS ESTILOS PREMIUM REDISEÑO GLOBAL (FASE 4)
+   ========================================================================== */
+
+/* 1. Marco Engranaje / Dial de Foto de Perfil (Propuesta 3D) */
+.profile-photo-dial {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto 1.2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.gear-img-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.85));
+    transition: transform 12s linear;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.profile-photo-dial:hover .gear-img-bg {
+    transform: rotate(360deg);
+}
+
+.profile-photo-dial .profile-photo-container {
+    position: absolute;
+    width: 200px; /* Tamaño del hueco interior de la brida */
+    height: 200px;
+    border-radius: 50%;
+    border: none;
+    overflow: hidden;
+    z-index: 2;
+    box-shadow:
+        inset 0 0 15px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+/* Indicador y LED en la posición exacta de la propuesta (Centro Inferior) */
+.tap-indicator-wrapper {
+    position: absolute;
+    bottom: 22px; /* Alineado justo en el borde inferior de la foto/brida */
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.tap-indicator-tape-img {
+    width: 195px; /* Cubre la base de la foto y el borde de la brida */
+    height: auto;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.7));
+}
+
+.tap-indicator-led {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--neon-green);
+    border: 2px solid #000;
+    box-shadow: 0 0 10px var(--neon-green);
+    animation: led-flicker 1.8s infinite alternate;
+}
+
+@keyframes led-flicker {
+    0%, 85%, 100% { opacity: 1; filter: brightness(1.2) drop-shadow(0 0 4px var(--neon-green)); }
+    88%, 95% { opacity: 0.3; filter: brightness(0.5); }
+    90% { opacity: 0.9; }
+}
+
+/* Contenedor de Placa Metálica "BRUTO" con 9 Stickers */
+.profile-title-container {
+    width: 100%;
+    max-width: 440px;
+    margin: -2.3rem auto 0.8rem auto;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-title-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(4px 8px 12px rgba(0, 0, 0, 0.95));
+}
+
+/* 2. Subtítulo en Cinta de Peligro */
+.hazard-subtitle-tape {
+    font-family: var(--font-section);
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #000 !important;
+    background: repeating-linear-gradient(45deg, 
+        var(--neon-yellow) 0px, var(--neon-yellow) 10px, 
+        #000 10px, #000 20px
+    );
+    padding: 0.4rem 1.8rem;
+    border: 3px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    transform: rotate(-1.5deg);
+    width: fit-content;
+    margin: 0.6rem auto 1.5rem auto;
+    clip-path: polygon(1% 15%, 98% 2%, 96% 85%, 2% 98%);
+    text-shadow: 
+        -1.5px -1.5px 0 var(--neon-yellow),
+         1.5px -1.5px 0 var(--neon-yellow),
+        -1.5px  1.5px 0 var(--neon-yellow),
+         1.5px  1.5px 0 var(--neon-yellow);
+    z-index: 3;
+}
+
+/* 3. Panel de Breaker de Ficha Técnica (Estadísticas) */
+.stats-panel::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #ffffff 30%, #64748b 80%);
+    border-radius: 50%;
+    border: 1px solid #000;
+    top: 8px;
+    right: 8px;
+}
+
+/* Manómetros Analógicos */
+.stats-bars-container .stat-icon-badge {
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.9),
+        0 3px 0px #000,
+        0 4px 10px rgba(0,0,0,0.6);
+    border: 3px solid #cbd5e1;
+    border-image: var(--chrome-border) 1;
+    position: relative;
+}
+
+/* Aguja del Manómetro (Tacómetro) */
+.stats-bars-container .stat-icon-badge::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 14px;
+    background: hsl(0, 95%, 55%);
+    top: 6px;
+    left: calc(50% - 1px);
+    transform-origin: bottom center;
+    transform: rotate(-45deg);
+    transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.stats-bars-container .stat-row:hover .stat-icon-badge::after {
+    transform: rotate(65deg);
+}
+
+/* Odómetro de estadísticas LCD azul */
+.odometer-lcd {
+    background: #040810 !important;
+    border: 3px solid #1e293b !important;
+    color: var(--neon-blue) !important;
+    font-family: 'Share Tech Mono', monospace !important;
+    font-weight: 800;
+    font-size: 1.15rem !important;
+    text-shadow: 0 0 8px var(--neon-blue);
+    letter-spacing: 2px !important;
+    clip-path: none !important;
+    padding: 0.35rem 1.4rem !important;
+    border-radius: 4px !important;
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.95),
+        0 4px 0px #000 !important;
+}
+
+/* 4. Botones Piloto Industriales (Preferencias) */
+.pref-btn {
+    border: 4px solid #0f1216 !important;
+    box-shadow:
+        0 0 0 2.5px #64748b, /* Borde cromado */
+        inset 0 4px 6px rgba(0,0,0,0.6),
+        0 5px 8px rgba(0,0,0,0.8) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.pref-btn-likes {
+    background: radial-gradient(circle, hsl(120, 85%, 28%) 0%, hsl(120, 90%, 15%) 70%, #000 100%) !important;
+}
+
+.pref-btn-dislikes {
+    background: radial-gradient(circle, hsl(324, 88%, 26%) 0%, hsl(324, 90%, 12%) 70%, #000 100%) !important;
+}
+
+.pref-group.active .pref-btn-likes {
+    background: radial-gradient(circle, hsl(120, 85%, 52%) 0%, hsl(120, 90%, 35%) 60%, #020b02 100%) !important;
+    box-shadow:
+        0 0 0 2.5px #cbd5e1,
+        0 0 15px var(--neon-green),
+        inset 0 2px 3px rgba(255,255,255,0.4) !important;
+}
+
+.pref-group.active .pref-btn-dislikes {
+    background: radial-gradient(circle, hsl(324, 88%, 52%) 0%, hsl(324, 90%, 32%) 60%, #0c0107 100%) !important;
+    box-shadow:
+        0 0 0 2.5px #cbd5e1,
+        0 0 15px var(--neon-pink),
+        inset 0 2px 3px rgba(255,255,255,0.4) !important;
+}
+
+/* 5. Remaches y texturas soldadas a los paneles */
+.info-section {
+    position: relative;
+}
+
+.info-section::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #ffffff 30%, #64748b 80%);
+    border-radius: 50%;
+    border: 1px solid #000;
+    top: 8px;
+    right: 8px;
+}
+
+/* 6. Lightbox de osciloscopio retro */
+.crt-telemetry-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9;
+    border: 2px solid var(--neon-green);
+    box-sizing: border-box;
+    background-image: 
+        linear-gradient(rgba(114, 236, 30, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(114, 236, 30, 0.08) 1px, transparent 1px);
+    background-size: 25px 25px;
+    background-position: center;
+    opacity: 0.75;
+}
+
+.tel-item {
+    position: absolute;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--neon-green);
+    text-shadow: 0 0 3px var(--neon-green);
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    z-index: 10;
+}
+
+.tel-tl { top: 0; left: 0; }
+.tel-tr { top: 0; right: 0; }
+.tel-bl { bottom: 0; left: 0; }
+.tel-br { bottom: 0; right: 0; }
+
+.gallery-main-viewport {
+    background: #020402 !important;
+}
+
+.gallery-modal-content {
+    border: 4px solid #000 !important;
+    background: #050705 !important;
+    box-shadow: 
+        0 0 0 3px #475569,
+        0 20px 50px rgba(0, 0, 0, 0.95) !important;
+}
+
+.gallery-close-btn {
+    color: var(--neon-green) !important;
+    text-shadow: 0 0 8px var(--neon-green);
+}
+
+/* Responsividad para dial de fotos en móviles */
+@media (max-width: 480px) {
+    .profile-photo-dial {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 1rem;
+    }
+    .profile-photo-dial .profile-photo-container {
+        width: 156px;
+        height: 156px;
+    }
+    .tap-indicator-wrapper {
+        bottom: 12px;
+    }
+    .tap-indicator-tape-img {
+        width: 150px;
+    }
+    .tap-indicator-led {
+        width: 11px;
+        height: 11px;
+    }
+    .profile-title-container {
+        margin-top: -1.7rem;
+    }
+}
+
+/* ==========================================================================
+   FICHA TÉCNICA - GRID DE MANÓMETROS ANALÓGICOS Y NEONES (FASE 4 - EJECUCIÓN)
+   ========================================================================== */
+
+.stats-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1.2rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-gauge-card {
+    background: linear-gradient(135deg, #181d24 0%, #0d1013 100%);
+    border: 3px solid #000;
+    border-radius: 4px;
+    padding: 0.8rem 0.6rem;
+    display: grid;
+    grid-template-columns: 85px 1fr 18px; /* Dial, info compacta y barra de neón vertical */
+    align-items: center;
+    gap: 8px;
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.1),
+        inset 0 -2px 0 rgba(0,0,0,0.5),
+        0 4px 8px rgba(0,0,0,0.6);
+    position: relative;
+}
+
+/* 1. Esfera del Manómetro */
+.gauge-dial-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gauge-dial {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #252c36 0%, #0a0d10 80%, #000 100%);
+    border: 4px solid #cbd5e1;
+    border-image: var(--chrome-border) 1;
+    box-shadow:
+        inset 0 4px 10px rgba(0,0,0,0.9),
+        0 3px 5px rgba(0,0,0,0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Biseles cromados por color de estadística */
+.dial-hp { border: 4.5px solid #22c55e !important; box-shadow: inset 0 0 10px rgba(34, 197, 94, 0.25), inset 0 4px 10px #000; }
+.dial-atk { border: 4.5px solid #d946ef !important; box-shadow: inset 0 0 10px rgba(217, 70, 239, 0.25), inset 0 4px 10px #000; }
+.dial-def { border: 4.5px solid #3b82f6 !important; box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.25), inset 0 4px 10px #000; }
+.dial-spd { border: 4.5px solid #06b6d4 !important; box-shadow: inset 0 0 10px rgba(6, 182, 212, 0.25), inset 0 4px 10px #000; }
+
+/* Escala del manómetro (Marcas) */
+.gauge-scale {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    background-image: 
+        repeating-conic-gradient(from -120deg, 
+            rgba(255,255,255,0.08) 0deg, rgba(255,255,255,0.08) 2deg, 
+            transparent 2deg, transparent 20deg
+        );
+    pointer-events: none;
+}
+
+.gauge-scale::after {
+    content: "0  30  60  90  120";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 7px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Aguja del Manómetro */
+.gauge-needle {
+    position: absolute;
+    width: 2px;
+    height: 32px;
+    background: #ef4444;
+    bottom: 40px; /* Eje central */
+    left: calc(50% - 1.2px);
+    transform-origin: bottom center;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1.1);
+    z-index: 3;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.gauge-needle::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 10px;
+    background: #000;
+    bottom: -10px;
+    left: -1px;
+}
+
+/* Eje central metálico */
+.gauge-center-cap {
+    position: absolute;
+    top: calc(50% - 6px);
+    left: calc(50% - 6px);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff 0%, #64748b 60%, #0f172a 100%);
+    border: 1.5px solid #000;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.6);
+    z-index: 4;
+}
+
+/* 2. Info Compacta LCD */
+.stat-info-compact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding-left: 2px;
+}
+
+.stat-label {
+    font-family: var(--font-section);
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.stat-value-lcd {
+    background: #070a0e;
+    border: 1.5px solid #1e293b;
+    border-radius: 3px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.95rem;
+    color: #38bdf8;
+    text-shadow: 0 0 4px #0284c7;
+    padding: 0.2rem 0.5rem;
+    width: fit-content;
+    font-weight: 800;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.95);
+}
+
+/* 3. Barras de Neón Verticales */
+.neon-bar-track {
+    width: 12px;
+    height: 82px;
+    background: #080a0d;
+    border: 1.5px solid #27272a;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 4px 6px rgba(0,0,0,0.85);
+}
+
+.neon-bar-fill {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 10px;
+    transition: height 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Estilo diagonal de peligro con franjas para cada tipo */
+.track-hp .neon-bar-fill {
+    background: repeating-linear-gradient(-45deg, 
+        #22c55e 0px, #22c55e 4px, 
+        #15803d 4px, #15803d 8px
+    );
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+}
+
+.track-atk .neon-bar-fill {
+    background: repeating-linear-gradient(-45deg, 
+        #d946ef 0px, #d946ef 4px, 
+        #a21caf 4px, #a21caf 8px
+    );
+    box-shadow: 0 0 12px rgba(217, 70, 239, 0.8);
+}
+
+.track-def .neon-bar-fill {
+    background: repeating-linear-gradient(-45deg, 
+        #3b82f6 0px, #3b82f6 4px, 
+        #1d4ed8 4px, #1d4ed8 8px
+    );
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
+}
+
+.track-spd .neon-bar-fill {
+    background: repeating-linear-gradient(-45deg, 
+        #06b6d4 0px, #06b6d4 4px, 
+        #0e7490 4px, #0e7490 8px
+    );
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.8);
+}
+
+/* 4. Total Odómetro Digital Metálico */
+.stat-total {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, #1e242d 0%, #0f1318 100%);
+    border: 3px solid #000;
+    border-radius: 4px;
+    padding: 0.6rem 1.2rem;
+    box-shadow:
+        inset 0 1.5px 0 rgba(255,255,255,0.1),
+        0 4px 8px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.total-label-metal {
+    font-family: var(--font-section);
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: #e2e8f0;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.odometer-lcd-panel {
+    background: #020509;
+    border: 4px solid #334155;
+    border-radius: 4px;
+    padding: 0.4rem 1.5rem;
+    position: relative;
+    box-shadow:
+        inset 0 0 10px rgba(0,0,0,0.95),
+        0 3px 0px #000;
+}
+
+.odometer-lcd {
+    font-family: 'Share Tech Mono', monospace !important;
+    font-size: 1.35rem !important;
+    font-weight: 900 !important;
+    color: #06b6d4 !important;
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.85) !important;
+    letter-spacing: 4px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* Tornillos del panel del total */
+.odometer-screws-l, .odometer-screws-r {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle at 35% 35%, #fff 0%, #64748b 70%, #000 100%);
+    border-radius: 50%;
+    border: 0.8px solid #000;
+    top: calc(50% - 3px);
+}
+.odometer-screws-l { left: 5px; }
+.odometer-screws-r { right: 5px; }
+
+/* 5. Remaches metálicos de taller en paneles */
+.info-section::before, .info-section::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle at 35% 35%, #ffffff 20%, #64748b 70%, #1e293b 100%);
+    border-radius: 50%;
+    border: 1px solid #000;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+    top: 8px;
+    z-index: 5;
+}
+.info-section::before { left: 8px; }
+.info-section::after { right: 8px; }
+
+/* Ajuste de responsividad para el grid en pantallas pequeñas */
+@media (max-width: 440px) {
+    .stats-grid-container {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    .stat-gauge-card {
+        padding: 0.6rem 0.5rem;
     }
 }
 
