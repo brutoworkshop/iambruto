@@ -1632,9 +1632,16 @@ body::after {
 
 /* Responsividad para cabecera en móviles */
 @media (max-width: 480px) {
+    body {
+        padding: 0.6rem;
+    }
     .main-container {
         left: -6px; /* Desplaza el container a la izquierda para simetrizar por la sombra de 12px */
-        padding: 1.2rem 0.6rem;
+        padding: 0.8rem 0.6rem 1.2rem 0.6rem;
+        margin-top: 6px;
+    }
+    .profile-header {
+        margin-top: -45px; /* Desplazado hacia arriba para reducir espacio amarillo */
     }
     .profile-name {
         margin-top: calc(-2.5rem - 5px); /* Desplazado 5px hacia arriba */
@@ -2069,11 +2076,15 @@ body::after {
 /* Responsividad extrema para móviles de 320px-360px */
 @media (max-width: 360px) {
     body {
-        padding: 0.5rem;
+        padding: 0.4rem;
     }
     .main-container {
-        padding: 1rem 0.5rem;
+        padding: 0.6rem 0.5rem 1rem 0.5rem;
+        margin-top: 5px;
         left: -6px;
+    }
+    .profile-header {
+        margin-top: -45px;
     }
     .profile-photo-dial {
         position: relative;
