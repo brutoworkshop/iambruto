@@ -126,7 +126,7 @@ body::after {
 /* Contenedor Principal (Tarjeta) - Rediseño Fanzine/Taller */
 .main-container {
     width: 100%;
-    max-width: 450px;
+    max-width: 448px; /* Reducido 2px de ancho */
     margin: 1.5rem auto;
     background: 
         linear-gradient(135deg, 
@@ -142,7 +142,7 @@ body::after {
     border: 3px solid #475569;
     border-radius: 8px;
     /* Esquinas ligeramente redondeadas pero brutas */
-    padding: 2.5rem 1.5rem;
+    padding: 2.5rem 23px; /* Reducido 1px de padding a cada lado (hace containers internos 2px más anchos) */
     /* Sombras duras desalineadas estilo punk con destellos internos cromados */
     box-shadow: 
         inset 0 1px 1px rgba(255, 255, 255, 0.18), 
@@ -1636,7 +1636,7 @@ body::after {
     }
     .main-container {
         left: -6px; /* Desplaza el container a la izquierda para simetrizar por la sombra de 12px */
-        padding: 2.5rem 1.5rem;
+        padding: 2.5rem 23px;
         margin-top: 12px;
     }
     .profile-header {
@@ -2078,7 +2078,7 @@ body::after {
         padding: 0.6rem 0.5rem;
     }
     .main-container {
-        padding: 1.5rem 0.8rem;
+        padding: 1.5rem 12px;
         margin-top: 10px;
         left: -6px;
     }
@@ -2104,19 +2104,19 @@ body::after {
         width: 185px;
     }
     .hazard-subtitle-tape {
-        width: calc(100% + 1.6rem);
-        margin-left: -0.8rem;
-        margin-right: -0.8rem;
+        width: calc(100% + 24px);
+        margin-left: -12px;
+        margin-right: -12px;
         padding: 0.5rem 1rem;
         font-size: 1.15rem;
     }
     .profile-title-container {
-        width: calc(100% + 1.6rem);
+        width: calc(100% + 24px);
         max-width: none;
         position: relative;
         left: 0;
         transform: none;
-        margin: -1.8rem -0.8rem 0.4rem -0.8rem;
+        margin: -1.8rem -12px 0.4rem -12px;
     }
     .profile-name {
         margin-top: calc(-2.1rem - 5px); /* Desplazado 5px hacia arriba */
@@ -2261,12 +2261,12 @@ body::after {
 
 /* Contenedor de Placa Metálica "BRUTO" con 9 Stickers */
 .profile-title-container {
-    width: calc(100% + 3rem);
+    width: calc(100% + 46px);
     max-width: none;
     position: relative;
     left: 0;
     transform: none;
-    margin: -2.8rem -1.5rem 0.8rem -1.5rem;
+    margin: -2.8rem -23px 0.8rem -23px;
     z-index: 5;
     display: flex;
     justify-content: center;
@@ -2298,8 +2298,8 @@ body::after {
     border: 4px solid #000;
     box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.6);
     transform: rotate(-1.5deg);
-    width: calc(100% + 3rem);
-    margin: 0.8rem -1.5rem 1.8rem -1.5rem;
+    width: calc(100% + 46px);
+    margin: 0.8rem -23px 1.8rem -23px;
     /* Extremos rasgados en sierra con clip-path */
     clip-path: polygon(
         0% 15%, 1.5% 8%, 1% 25%, 2% 38%, 0.8% 55%, 2.2% 72%, 1.2% 88%, 0% 95%,
@@ -2510,18 +2510,18 @@ body::after {
         height: 13px;
     }
     .profile-title-container {
-        width: calc(100% + 3rem);
+        width: calc(100% + 46px);
         max-width: none;
         margin-top: -2.2rem;
-        margin-left: -1.5rem;
-        margin-right: -1.5rem;
+        margin-left: -23px;
+        margin-right: -23px;
         left: 0;
         transform: none;
     }
     .hazard-subtitle-tape {
-        width: calc(100% + 3rem);
-        margin-left: -1.5rem;
-        margin-right: -1.5rem;
+        width: calc(100% + 46px);
+        margin-left: -23px;
+        margin-right: -23px;
     }
 }
 

@@ -554,6 +554,10 @@
 
         // Arrancar la aplicación desde el Splash Screen
         function startApp() {
+            // Desplazar al inicio absoluto y habilitar scrolling
+            window.scrollTo(0, 0);
+            document.body.style.overflow = '';
+
             const splash = document.getElementById('splash-screen');
             const btn = document.getElementById('btn-enter');
             
@@ -793,6 +797,13 @@
 
         // Inicialización y eventos de accesibilidad e interacción
         window.onload = function () {
+            // Desactivar la restauración automática del scroll del navegador y bloquear scroll
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0, 0);
+            document.body.style.overflow = 'hidden'; // Evitar scroll previo al ingreso
+
             // Cargar estado inicial
             updateStats(stateEquipped);
 
