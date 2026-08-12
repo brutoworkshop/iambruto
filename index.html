@@ -92,7 +92,7 @@
                     <div class="profile-photo-container" id="profile-photo" onclick="openGallery()" tabindex="0" role="button"
                         aria-label="Abrir galería de fotos de Bruto">
                         <img src="bruto_pic_1.jpg" alt="Foto de perfil de Bruto" class="profile-photo-img">
-                        <div class="profile-photo-hint">Ver fotos (5)</div>
+                        <div class="profile-photo-hint">Ver fotos (8)</div>
                     </div>
 
                     <!-- Indicador [TAP TO VIEW] y LED en la posición exacta (Centro Inferior) -->
@@ -439,6 +439,9 @@
                     <img src="bruto_pic_3.jpg" alt="Bruto 3" class="gallery-slide-img">
                     <img src="bruto_pic_4.jpg" alt="Bruto 4" class="gallery-slide-img">
                     <img src="bruto_pic_5.jpg" alt="Bruto 5" class="gallery-slide-img">
+                    <img src="bruto_pic_6.jpg" alt="Bruto 6" class="gallery-slide-img">
+                    <img src="bruto_pic_7.jpg" alt="Bruto 7" class="gallery-slide-img">
+                    <img src="bruto_pic_8.jpg" alt="Bruto 8" class="gallery-slide-img">
                 </div>
                 <button class="gallery-nav-btn gallery-nav-prev" onclick="changeSlide(-1)" aria-label="Foto anterior">&lt;</button>
                 <button class="gallery-nav-btn gallery-nav-next" onclick="changeSlide(1)" aria-label="Foto siguiente">&gt;</button>
@@ -451,6 +454,9 @@
                 <button class="gallery-thumb" onclick="goToSlide(2)" aria-label="Ver miniatura 3 de Bruto"><img src="bruto_pic_3.jpg" alt="Miniatura 3"></button>
                 <button class="gallery-thumb" onclick="goToSlide(3)" aria-label="Ver miniatura 4 de Bruto"><img src="bruto_pic_4.jpg" alt="Miniatura 4"></button>
                 <button class="gallery-thumb" onclick="goToSlide(4)" aria-label="Ver miniatura 5 de Bruto"><img src="bruto_pic_5.jpg" alt="Miniatura 5"></button>
+                <button class="gallery-thumb" onclick="goToSlide(5)" aria-label="Ver miniatura 6 de Bruto"><img src="bruto_pic_6.jpg" alt="Miniatura 6"></button>
+                <button class="gallery-thumb" onclick="goToSlide(6)" aria-label="Ver miniatura 7 de Bruto"><img src="bruto_pic_7.jpg" alt="Miniatura 7"></button>
+                <button class="gallery-thumb" onclick="goToSlide(7)" aria-label="Ver miniatura 8 de Bruto"><img src="bruto_pic_8.jpg" alt="Miniatura 8"></button>
             </div>
         </div>
     </div>
@@ -707,7 +713,7 @@
 
         // --- GALERÍA DE FOTOS INTERACTIVA (LIGHTBOX) ---
         let currentSlide = 0;
-        const totalSlides = 5;
+        const totalSlides = 8;
         let lastActiveElement = null;
 
         function openGallery() {
@@ -782,7 +788,7 @@
         function goToSlide(index) {
             currentSlide = index;
             const slider = document.getElementById('gallery-slider');
-            slider.style.transform = `translateX(-${index * 20}%)`;
+            slider.style.transform = `translateX(-${index * 12.5}%)`;
 
             // Actualizar miniatura activa
             const thumbs = document.querySelectorAll('.gallery-thumb');
