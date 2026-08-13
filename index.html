@@ -151,50 +151,61 @@
                     💤 <strong>Si Bruto no quiere pelear:</strong> Es mejor dejarlo tranquilo.
                 </div>
             </section>
-        </div>
 
-            <img src="Tornillo - 1.png" class="c-screw c-screw-l1" alt="" aria-hidden="true">
-            <h2>Presentación</h2>
-            <p class="bio-text">
-                Retirado de las peleas callejeras clandestinas, Bruto es un viejo perro criollo que va por ahí
-                metiéndose en problemas y saliéndose con la suya. Siempre buscando su próximo rival, disfruta de trabar
-                peleas con sus compinches de la manada y de cazar a los gatos que se le aparecen. Si te lo cruzas, dale
-                un buen tope o una palmada en la espalda y recuérdale que es un perro muy malo y él te responderá con
-                topes.
-            </p>
-            <div class="alert-box">
-                🤝 <strong>Si Bruto te busca pelea:</strong> Quiere ser tu amigo.<br>
-                💤 <strong>Si Bruto no quiere pelear:</strong> Es mejor dejarlo tranquilo.
-            </div>
-        </section>
+            <!-- SECCIÓN: Dueño y Señor -->
+            <section class="info-section title-right title-purple">
+                <h2>Dueño y Señor</h2>
+                <div class="owner-card" id="owner-card" onclick="openOwnerModal()" tabindex="0" role="button" aria-label="Ver historia de Señor Toro">
+                    <div class="owner-thumb-container">
+                        <img src="Señor Toro.png" alt="Señor Toro" class="owner-thumb-img">
+                        <div class="owner-thumb-hint">VER HISTORIA</div>
+                    </div>
+                    <div class="owner-info-list">
+                        <div class="owner-info-item owner-info-name-wrapper">
+                            <span class="owner-info-name">Sr. Toro</span>
+                        </div>
+                        <div class="owner-info-item">
+                            <span class="owner-info-label">Puesto</span>
+                            <span class="owner-info-value">Líder del Gimnasio</span>
+                        </div>
+                        <div class="owner-info-item">
+                            <span class="owner-info-label">Ubicación</span>
+                            <span class="owner-info-value">Ciudad Forja</span>
+                        </div>
+                        <div class="owner-info-item">
+                            <span class="owner-info-label">Recompensa</span>
+                            <span class="owner-info-value">Medalla Toro</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <!-- BLOCK 3: Objeto Equipado + Carta Pokémon -->
         <div class="viewport-block block-3">
             <!-- SECCIÓN 3: El Collar Interactivo (Objeto Equipado) -->
             <section class="info-section title-right title-blue">
                 <h2>Objeto Equipado</h2>
-                <div class="collar-widget" id="collar-widget" onclick="toggleCollar()" tabindex="0" role="button"
-                    aria-label="Collar de cuero de Bruto" aria-expanded="true">
-                    <div class="collar-icon-container">
-                        <!-- Icono SVG de collar de perro con púas -->
-                        <svg class="collar-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M 50,20 A 30,30 0 1,0 50,80 A 30,30 0 1,0 50,20 Z" class="collar-strap" fill="none"
-                                stroke-width="10" />
-                            <rect x="44" y="14" width="12" height="12" rx="2" class="collar-buckle" />
-                            <polygon points="50,10 47,20 53,20" class="collar-spike" />
-                            <polygon points="80,50 70,47 70,53" class="collar-spike" />
-                            <polygon points="50,90 47,80 53,80" class="collar-spike" />
-                            <polygon points="20,50 30,47 30,53" class="collar-spike" />
-                        </svg>
+                <div class="collar-widget-new" id="collar-widget" tabindex="0" role="region" aria-label="Contenedor de Objeto Equipado">
+                    
+                    <!-- 1. Nombre del objeto -->
+                    <div class="collar-title-new">
+                        <img src="cinta_bruticollar.png" alt="Bruticollar" class="collar-title-img">
                     </div>
-                    <div class="collar-details">
-                        <h3>Collar de Cuero de Bruto</h3>
-                        <p class="collar-desc">Un pesado accesorio metálico. Cambia sus estadísticas e incrementa su poder
-                            de ataque.</p>
-                        <div class="collar-status-wrapper">
-                            <span class="status-label">Estado:</span>
-                            <span class="status-value status-equipped" id="collar-status">EQUIPADO</span>
-                        </div>
+
+                    <!-- 2. Botón del collar (Imagen Collar Boton.png) -->
+                    <button class="collar-img-btn" onclick="handleCollarInteraction()" aria-label="Interactuar con el Collar de Bruto">
+                        <img src="Collar Boton.png" alt="Bruticollar" class="collar-img-asset">
+                    </button>
+
+                    <!-- 3. Descripción del objeto -->
+                    <div class="collar-desc-new">
+                        <p class="collar-desc">Un pesado accesorio metálico. Cambia sus estadísticas e incrementa su poder de ataque.</p>
+                    </div>
+                    
+                    <!-- 4. Botón de estado (sin la palabra "Estado") -->
+                    <div class="collar-status-container">
+                        <button class="status-btn status-equipped" id="collar-status-btn" onclick="handleCollarStatusClick()">EQUIPADO</button>
                     </div>
                 </div>
             </section>
@@ -210,6 +221,29 @@
                             class="pokemon-card-img card-equipped-img">
                         <img src="bruto_callejero.jpg" alt="Carta Bruto GX - Forma Callejera"
                             class="pokemon-card-img card-unequipped-img">
+                    </div>
+
+                    <!-- NUEVO CONTENEDOR EXCLUSIVO PARA EL SWITCH DE FORMA -->
+                    <div class="switch-panel-container">
+                        <!-- Checkbox oculto para preservar compatibilidad con toda la lógica existente -->
+                        <input type="checkbox" id="card-switch" style="display: none;" onchange="toggleCardSwitch(this)" checked>
+                        
+                        <div class="rotary-switch-widget">
+                            <!-- Burbuja de vidrio: Callejero -->
+                            <div class="glass-indicator-panel panel-callejera" id="indicator-callejera">
+                                <span class="indicator-text">Callejero</span>
+                            </div>
+
+                            <!-- Selector redondo (Perilla de dos posiciones) -->
+                            <button class="rotary-knob-btn" id="rotary-knob" onclick="handleRotaryClick()" aria-label="Alternar forma de Bruto" type="button">
+                                <span class="knob-marker"></span>
+                            </button>
+
+                            <!-- Burbuja de vidrio: Adoptado -->
+                            <div class="glass-indicator-panel panel-adoptada active" id="indicator-adoptada">
+                                <span class="indicator-text">Adoptado</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -604,6 +638,14 @@
         // Estado del collar
         let collarEquipado = true;
 
+        // Variables para la combinación del candado
+        let currentCombination = [0, 0, 0, 0];
+        const correctCombination = "0580";
+        let isLockModalOpen = false;
+
+        // Variables para el switch de vista temporal
+        let cardSwitchTimeout = null;
+
         // Datos de estadísticas para ambos estados
         const stateEquipped = {
             hp: 135, atk: 157, def: 121, spd: 32, satk: 65, sdef: 70, total: 580,
@@ -645,7 +687,7 @@
             playMetalImpactSound();
 
             const widget = document.getElementById('collar-widget');
-            const statusText = document.getElementById('collar-status');
+            const statusBtn = document.getElementById('collar-status-btn');
             const card = document.getElementById('bruto-card');
             const statsPanel = document.getElementById('stats-panel');
             const statTotal = document.getElementById('stat-val-total');
@@ -660,24 +702,213 @@
                 statsPanel.classList.remove('shake-impact');
             }, 500);
 
+            // Sincronizar el interruptor de vista temporal
+            const cardSwitch = document.getElementById('card-switch');
+            if (cardSwitchTimeout) {
+                clearTimeout(cardSwitchTimeout);
+                cardSwitchTimeout = null;
+            }
+
             if (collarEquipado) {
                 widget.classList.remove('unequipped');
                 widget.setAttribute('aria-expanded', 'true');
-                statusText.innerText = 'EQUIPADO';
-                statusText.className = 'status-value status-equipped';
+                statusBtn.innerText = 'EQUIPADO';
+                statusBtn.className = 'status-btn status-equipped';
                 card.classList.remove('unequipped');
                 statsPanel.classList.remove('unequipped');
+
+                cardSwitch.checked = true;
             } else {
                 widget.classList.add('unequipped');
                 widget.setAttribute('aria-expanded', 'false');
-                statusText.innerText = 'DESEQUIPADO';
-                statusText.className = 'status-value status-unequipped';
+                statusBtn.innerText = 'DESEQUIPADO';
+                statusBtn.className = 'status-btn status-unequipped';
                 card.classList.add('unequipped');
                 statsPanel.classList.add('unequipped');
+
+                cardSwitch.checked = false;
             }
+
+            updateRotaryUI();
 
             statTotal.innerText = state.total;
             updateStats(state);
+        }
+
+        // Lógica al interactuar con la imagen/botón del collar
+        function handleCollarInteraction() {
+            handleCollarStatusClick();
+        }
+
+        // Lógica al pulsar el botón de estado
+        function handleCollarStatusClick() {
+            if (collarEquipado) {
+                openLockModal();
+            } else {
+                openLockModalCloseAnim();
+            }
+        }
+
+        // Abrir modal de candado para pedir clave
+        function openLockModal() {
+            isLockModalOpen = true;
+            currentCombination = [0, 0, 0, 0];
+            updateLockDials();
+            
+            const modal = document.getElementById('lock-modal');
+            const shackle = document.getElementById('padlock-shackle');
+            const modalContent = document.querySelector('.lock-modal-content');
+            
+            modalContent.classList.remove('shake-error');
+            shackle.classList.remove('open');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Abrir modal mostrando la animación de cierre (sin pedir clave)
+        function openLockModalCloseAnim() {
+            const modal = document.getElementById('lock-modal');
+            const shackle = document.getElementById('padlock-shackle');
+            
+            shackle.classList.add('open');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                shackle.classList.remove('open'); // Cerrar grillete
+                playMetalImpactSound();
+                
+                setTimeout(() => {
+                    closeLockModal();
+                    toggleCollar();
+                }, 400);
+            }, 300);
+        }
+
+        // Cerrar modal
+        function closeLockModal() {
+            isLockModalOpen = false;
+            const modal = document.getElementById('lock-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Actualizar rodillos del candado
+        function updateLockDials() {
+            for (let i = 0; i < 4; i++) {
+                document.getElementById(`digit-${i}`).innerText = currentCombination[i];
+            }
+        }
+
+        // Cambiar dígitos de rodillos
+        function changeDigit(index, diff) {
+            currentCombination[index] = (currentCombination[index] + diff + 10) % 10;
+            updateLockDials();
+            
+            const digitEl = document.getElementById(`digit-${index}`);
+            digitEl.classList.remove('spin-up', 'spin-down');
+            void digitEl.offsetWidth; // Force reflow
+            digitEl.classList.add(diff > 0 ? 'spin-up' : 'spin-down');
+            
+            playRatchetSound();
+            checkCombination();
+        }
+
+        // Verificar la combinación introducida
+        function checkCombination() {
+            const currentString = currentCombination.join('');
+            if (currentString === correctCombination) {
+                const shackle = document.getElementById('padlock-shackle');
+                shackle.classList.add('open'); // Abrir grillete
+                playMetalImpactSound();
+
+                const modalContent = document.querySelector('.lock-modal-content');
+                modalContent.style.borderColor = 'var(--neon-green)';
+                
+                setTimeout(() => {
+                    closeLockModal();
+                    modalContent.style.borderColor = '';
+                    toggleCollar();
+                }, 1000);
+            } else {
+                // Si la combinación tiene 4 dígitos pero no es correcta (por ejemplo, si se está moviendo el último dígito)
+                // En un candado real, el usuario sigue girando hasta dar con la correcta. 
+                // Pero si queremos dar feedback visual si se ingresa una clave incorrecta y se detiene, 
+                // por simplicidad y robustez, el candado simplemente permanece cerrado hasta que coincida.
+            }
+        }
+
+        // Selector Rotatorio (Perilla)
+        function handleRotaryClick() {
+            playRatchetSound();
+            const checkbox = document.getElementById('card-switch');
+            checkbox.checked = !checkbox.checked;
+            toggleCardSwitch(checkbox);
+        }
+
+        function updateRotaryUI() {
+            const cardSwitch = document.getElementById('card-switch');
+            const knob = document.getElementById('rotary-knob');
+            const indicatorAdoptada = document.getElementById('indicator-adoptada');
+            const indicatorCallejera = document.getElementById('indicator-callejera');
+            
+            if (cardSwitch.checked) {
+                knob.classList.remove('pointing-left');
+                knob.classList.add('pointing-right');
+                indicatorAdoptada.classList.add('active');
+                indicatorCallejera.classList.remove('active');
+            } else {
+                knob.classList.remove('pointing-right');
+                knob.classList.add('pointing-left');
+                indicatorCallejera.classList.add('active');
+                indicatorAdoptada.classList.remove('active');
+            }
+        }
+
+        // Switch On/Off de Vista Temporal de 5 segundos
+        function toggleCardSwitch(element) {
+            playRatchetSound();
+            const card = document.getElementById('bruto-card');
+            const statsPanel = document.getElementById('stats-panel');
+
+            if (cardSwitchTimeout) {
+                clearTimeout(cardSwitchTimeout);
+                cardSwitchTimeout = null;
+            }
+
+            if (element.checked) {
+                card.classList.remove('unequipped');
+                statsPanel.classList.remove('unequipped');
+                updateStats(stateEquipped);
+                
+                if (!collarEquipado) {
+                    cardSwitchTimeout = setTimeout(() => {
+                        element.checked = false;
+                        card.classList.add('unequipped');
+                        statsPanel.classList.add('unequipped');
+                        updateStats(stateUnequipped);
+                        updateRotaryUI();
+                        playRatchetSound();
+                    }, 5000);
+                }
+            } else {
+                card.classList.add('unequipped');
+                statsPanel.classList.add('unequipped');
+                updateStats(stateUnequipped);
+
+                if (collarEquipado) {
+                    cardSwitchTimeout = setTimeout(() => {
+                        element.checked = true;
+                        card.classList.remove('unequipped');
+                        statsPanel.classList.remove('unequipped');
+                        updateStats(stateEquipped);
+                        updateRotaryUI();
+                        playRatchetSound();
+                    }, 5000);
+                }
+            }
+
+            updateRotaryUI();
         }
 
         // --- PREFERENCIAS INTERACTIVAS (GUSTOS & DISGUSTOS) ---
@@ -778,6 +1009,70 @@
             }
         }
 
+        // --- MODAL DE SEÑOR TORO (LÓGICA) ---
+        let isOwnerModalOpen = false;
+
+        function openOwnerModal() {
+            lastActiveElement = document.activeElement;
+            isOwnerModalOpen = true;
+            playRatchetSound();
+            const modal = document.getElementById('owner-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            const closeBtn = modal.querySelector('.owner-modal-close-btn');
+            if (closeBtn) closeBtn.focus();
+
+            document.addEventListener('keydown', trapOwnerFocus);
+        }
+
+        function closeOwnerModal() {
+            if (!isOwnerModalOpen) return;
+            isOwnerModalOpen = false;
+            playRatchetSound();
+            const modal = document.getElementById('owner-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+
+            document.removeEventListener('keydown', trapOwnerFocus);
+
+            if (lastActiveElement) {
+                lastActiveElement.focus();
+            }
+        }
+
+        function closeOwnerModalOnOutsideClick(event) {
+            if (event.target.id === 'owner-modal') {
+                closeOwnerModal();
+            }
+        }
+
+        function trapOwnerFocus(e) {
+            if (e.key !== 'Tab') return;
+
+            const modal = document.getElementById('owner-modal');
+            const focusableSelectors = 'button, [tabindex="0"]';
+            const focusableElements = Array.from(modal.querySelectorAll(focusableSelectors))
+                .filter(el => el.offsetWidth > 0 || el.offsetHeight > 0);
+
+            if (focusableElements.length === 0) return;
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) { // Shift + Tab
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else { // Tab
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        }
+
         function changeSlide(direction) {
             let nextSlide = currentSlide + direction;
             if (nextSlide >= totalSlides) nextSlide = 0;
@@ -828,7 +1123,7 @@
             collarWidget.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    toggleCollar();
+                    handleCollarStatusClick();
                 }
             });
 
@@ -841,10 +1136,22 @@
                 }
             });
 
-            // Cerrar galería con la tecla Escape
+            // Manejo de eventos de teclado en el contenedor de Señor Toro
+            const ownerCard = document.getElementById('owner-card');
+            if (ownerCard) {
+                ownerCard.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openOwnerModal();
+                    }
+                });
+            }
+
+            // Cerrar galería o modal con la tecla Escape
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') {
                     closeGallery();
+                    closeOwnerModal();
                 }
             });
 
@@ -1140,6 +1447,95 @@
             shineBruto.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255, 255, 255, 0.18) 0%, transparent 65%)`;
         }
     </script>
+
+    <!-- Modal de Candado de Combinación para Desbloquear Collar -->
+    <div id="lock-modal" class="lock-modal hidden" role="dialog" aria-modal="true" aria-labelledby="lock-modal-title">
+        <div class="lock-overlay" onclick="closeLockModal()"></div>
+        <div class="lock-modal-content">
+            <h3 id="lock-modal-title" class="lock-title">CÓDIGO DE SEGURIDAD</h3>
+            
+            <div class="padlock-wrapper">
+                <!-- Candado SVG interactivo -->
+                <svg class="padlock-svg" viewBox="0 0 200 240" width="160" height="192" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Grillete (Shackle) del candado -->
+                    <path id="padlock-shackle" d="M 60,90 V 50 A 40,40 0 0,1 140,50 V 90" fill="none" stroke="#64748b" stroke-width="16" stroke-linecap="round" />
+                    <!-- Cuerpo del candado -->
+                    <rect x="30" y="85" width="140" height="130" rx="16" fill="#1e293b" stroke="#475569" stroke-width="6" />
+                    <!-- Remaches en el cuerpo -->
+                    <circle cx="45" cy="100" r="4" fill="#64748b" />
+                    <circle cx="155" cy="100" r="4" fill="#64748b" />
+                    <circle cx="45" cy="200" r="4" fill="#64748b" />
+                    <circle cx="155" cy="200" r="4" fill="#64748b" />
+                </svg>
+                
+                <!-- Rodillos de Combinación sobre el cuerpo del candado -->
+                <div class="combination-dial-container">
+                    <div class="dial-column" data-index="0">
+                        <button class="dial-arrow arrow-up" onclick="changeDigit(0, 1)" aria-label="Incrementar primer dígito">▲</button>
+                        <div class="dial-number-wrapper">
+                            <div class="dial-number" id="digit-0">0</div>
+                        </div>
+                        <button class="dial-arrow arrow-down" onclick="changeDigit(0, -1)" aria-label="Decrementar primer dígito">▼</button>
+                    </div>
+                    <div class="dial-column" data-index="1">
+                        <button class="dial-arrow arrow-up" onclick="changeDigit(1, 1)" aria-label="Incrementar segundo dígito">▲</button>
+                        <div class="dial-number-wrapper">
+                            <div class="dial-number" id="digit-1">0</div>
+                        </div>
+                        <button class="dial-arrow arrow-down" onclick="changeDigit(1, -1)" aria-label="Decrementar segundo dígito">▼</button>
+                    </div>
+                    <div class="dial-column" data-index="2">
+                        <button class="dial-arrow arrow-up" onclick="changeDigit(2, 1)" aria-label="Incrementar tercer dígito">▲</button>
+                        <div class="dial-number-wrapper">
+                            <div class="dial-number" id="digit-2">0</div>
+                        </div>
+                        <button class="dial-arrow arrow-down" onclick="changeDigit(2, -1)" aria-label="Decrementar tercer dígito">▼</button>
+                    </div>
+                    <div class="dial-column" data-index="3">
+                        <button class="dial-arrow arrow-up" onclick="changeDigit(3, 1)" aria-label="Incrementar cuarto dígito">▲</button>
+                        <div class="dial-number-wrapper">
+                            <div class="dial-number" id="digit-3">0</div>
+                        </div>
+                        <button class="dial-arrow arrow-down" onclick="changeDigit(3, -1)" aria-label="Decrementar cuarto dígito">▼</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lock-actions">
+                <button class="lock-btn-cancel" onclick="closeLockModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE SEÑOR TORO (EXPANDIDO) -->
+    <div id="owner-modal" class="owner-modal hidden" onclick="closeOwnerModalOnOutsideClick(event)" role="dialog" aria-modal="true" aria-label="Historia de Señor Toro">
+        <div class="owner-modal-overlay"></div>
+        <div class="owner-modal-content">
+            <button class="owner-modal-close-btn" onclick="closeOwnerModal()" aria-label="Cerrar modal">&times;</button>
+            <div class="owner-modal-card">
+                <!-- Capa de osciloscopio digital (consistencia premium) -->
+                <div class="crt-telemetry-grid" aria-hidden="true">
+                    <div class="tel-item tel-tl">TRAINER_SCAN: ACTIVE</div>
+                    <div class="tel-item tel-tr">TEMP: 38°C</div>
+                    <div class="tel-item tel-bl">FORJA_GYM_v1.0</div>
+                    <div class="tel-item tel-br">LOCK_STATUS: OPEN</div>
+                </div>
+                
+                <div class="owner-modal-layout">
+                    <div class="owner-modal-image-wrapper">
+                        <img src="Señor Toro Full.png" alt="Señor Toro Full" class="owner-modal-img">
+                    </div>
+                    <div class="owner-modal-text-wrapper">
+                        <p class="owner-modal-description">
+                            Sr. Toro, líder del Gimnasio de la Manada en Ciudad Forja, destaca por su fuerza, disciplina y particular filosofía: para él, un verdadero líder no demuestra su poder dominando a otros, sino asumiendo la responsabilidad sobre aquello que decide proteger.
+                            <br><br>
+                            Su compañero es Bruto, al que encontró vagando entre ruinas de una forja tras una tormenta. Ganó su confianza regresando a diario con paciencia y alimento. La Medalla Toro representa esa fuerza, confianza y constancia que exige a todo rival.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
