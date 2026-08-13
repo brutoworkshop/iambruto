@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bruto-card-v13';
+const CACHE_NAME = 'bruto-card-v14';
 const ASSETS = [
     './',
     './index.html',
@@ -11,12 +11,32 @@ const ASSETS = [
     './bruto_pic_3.jpg',
     './bruto_pic_4.jpg',
     './bruto_pic_5.jpg',
+    './bruto_pic_6.jpg',
+    './bruto_pic_7.jpg',
+    './bruto_pic_8.jpg',
     './textura_chapa.png',
     './manchas_taller.png',
     './manifest.json',
     './grafitti_mancha.png',
     './favicon.png',
-    './bruto_icon_512.png'
+    './bruto_icon_512.png',
+    './Collar Boton.png',
+    './Tornillo - 1.png',
+    './Tornillo - 2.png',
+    './Tornillo - 3.png',
+    './Tornillo - 4.png',
+    './brida_industrial.png',
+    './cinta_bruticollar.png',
+    './cinta_tap_view.png',
+    './placa_bruto_stickers.png',
+    './Señor Toro.png',
+    './Señor Toro Full.png',
+    './textura_persiana.jpg',
+    './placa_portada.png',
+    './neon_taller.png',
+    './letrero_cuidado.png',
+    './engranaje_portada.png',
+    './boton_entrar.png'
 ];
 
 // Instalar Service Worker y cachear recursos

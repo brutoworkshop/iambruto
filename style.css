@@ -59,6 +59,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 html, body {
@@ -1790,9 +1792,10 @@ body::after {
     height: 100vh;
     background-color: hsl(220, 18%, 4%);
     background-image: 
-        linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.92) 100%),
-        url('textura_chapa.png');
-    background-size: cover, 420px 420px;
+        linear-gradient(180deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.68) 100%),
+        url('textura_persiana.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1831,160 +1834,168 @@ body::after {
     pointer-events: none;
 }
 
-.splash-content {
-    text-align: center;
+/* Contenedor wrapper para la placa central oxidada */
+.splash-plate-wrapper {
     position: relative;
+    width: 90%;
+    max-width: 320px;
+    /* Relación de aspecto vertical estricta 9:16 para encajar la chapa sin deformación */
+    aspect-ratio: 9 / 16;
     z-index: 10;
-    max-width: 90%;
-    width: 320px;
-    padding: 2.2rem 1.5rem;
-    background: hsla(220, 18%, 6%, 0.88);
-    border: 3px solid #334155;
-    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-shadow: 
-        inset 0 1px 2px rgba(255, 255, 255, 0.1), 
-        0 15px 30px rgba(0, 0, 0, 0.8);
+        0 20px 45px rgba(0, 0, 0, 0.95),
+        inset 0 0 30px rgba(0,0,0,0.85);
+    border-radius: 12px;
+    overflow: hidden;
     transform: rotate(-1deg);
 }
 
-/* Letrero neón de taller mecánico parpadeante */
-.workshop-sign {
-    font-family: var(--font-title);
-    font-size: 2.2rem;
-    line-height: 1;
-    color: #0d1117;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.sign-flicker-slow {
-    color: #fff;
-    -webkit-text-stroke: 1px var(--neon-blue);
-    text-shadow: 
-        0 0 4px var(--neon-blue-glow),
-        0 0 12px var(--neon-blue),
-        0 0 25px var(--neon-blue-glow);
-    animation: flicker-slow-anim 4s infinite alternate;
-}
-
-.sign-flicker-fast {
-    color: #fff;
-    -webkit-text-stroke: 1.2px var(--neon-green);
-    text-shadow: 
-        0 0 4px var(--neon-green-glow),
-        0 0 14px var(--neon-green),
-        0 0 28px var(--neon-green-glow);
-    animation: flicker-fast-anim 2.5s infinite alternate;
-}
-
-/* Etiqueta de advertencia industrial con tornillos */
-.hazard-label {
-    font-family: var(--font-dymo);
-    background: #000;
-    border: 2px solid var(--neon-orange);
-    color: var(--neon-orange);
-    font-size: 0.95rem;
-    font-weight: 900;
-    padding: 0.5rem 1.6rem;
-    letter-spacing: 1.5px;
-    margin-bottom: 2.5rem;
-    box-shadow: 4px 4px 0 #000;
-    transform: rotate(2deg);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    position: relative;
-}
-
-.screw-hazard {
+.splash-plate-bg {
     position: absolute;
-    width: 14px;
-    height: 14px;
-    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.8));
-    opacity: 0.85;
-}
-
-.screw-hazard-tl { top: 3px; left: 3px; transform: rotate(15deg); }
-.screw-hazard-tr { top: 3px; right: 3px; transform: rotate(-45deg); }
-.screw-hazard-bl { bottom: 3px; left: 3px; transform: rotate(80deg); }
-.screw-hazard-br { bottom: 3px; right: 3px; transform: rotate(-10deg); }
-
-.hazard-icon {
-    font-size: 1.1rem;
-    animation: pulse-danger 1s infinite alternate;
-}
-
-/* Botón industrial de encendido de motor (Engine Start/Stop) */
-.splash-btn {
-    font-family: var(--font-section) !important;
-    font-weight: 900;
-    text-transform: uppercase;
-    cursor: pointer;
-    position: relative;
-    outline: none;
-}
-
-.engine-start-btn {
-    width: 125px;
-    height: 125px;
-    border-radius: 50% !important;
-    border: 5px solid #0f1216;
-    background: radial-gradient(circle, hsl(0, 90%, 48%) 0%, hsl(0, 95%, 32%) 70%, #000 100%);
-    color: #fff;
-    text-shadow: 1px 1px 2px #000;
-    box-shadow:
-        0 0 0 4px #cbd5e1, /* Anillo cromado exterior */
-        0 8px 0px #000,
-        0 15px 25px rgba(0,0,0,0.8);
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin-bottom: 1.2rem;
-    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.engine-start-btn .btn-text {
-    font-size: 1.15rem;
-    line-height: 1.05;
-    letter-spacing: 1px;
-    margin-top: 2px;
-}
-
-.engine-start-btn::before {
-    content: "";
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-    border-radius: 50%;
-    border: 2px dashed rgba(255, 255, 255, 0.35);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Evita que la imagen se estire horizontal o verticalmente de forma deformada */
+    z-index: -1;
     pointer-events: none;
 }
 
-.engine-start-btn:hover {
-    transform: scale(1.03);
-    background: radial-gradient(circle, hsl(0, 95%, 52%) 0%, hsl(0, 100%, 36%) 70%, #110000 100%);
-    box-shadow:
-        0 0 0 4px var(--neon-yellow),
-        0 8px 0px #000,
-        0 15px 30px rgba(0,0,0,0.9);
+.splash-content-premium {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 3rem 1.4rem 2.5rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Agrupa los elementos hacia el centro */
+    align-items: center;
+    gap: 1.6rem; /* Espaciado más compacto y balanceado */
+    box-sizing: border-box;
+    z-index: 2;
 }
 
-.engine-start-btn:active {
-    transform: translateY(6px) scale(0.98);
-    box-shadow:
-        0 0 0 4px var(--neon-yellow),
-        0 2px 0px #000,
-        0 5px 12px rgba(0,0,0,0.9);
+/* Logotipo neón fotorrealista parpadeante */
+.workshop-neon-logo {
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: calc(4.4rem + 15px); /* Desplazado 15px más hacia abajo */
 }
 
-.splash-btn:focus-visible {
-    border-color: var(--neon-yellow);
-    box-shadow: 0 0 15px var(--neon-yellow);
+.neon-logo-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.55)) drop-shadow(0 0 20px rgba(0, 255, 0, 0.4));
+}
+
+.sign-flicker-slow {
+    animation: flicker-slow-anim 4s infinite alternate;
+}
+
+/* Letrero de advertencia fotorrealista */
+.hazard-label-premium {
+    width: 100%;
+    max-width: 230px;
+    display: flex;
+    justify-content: center;
+    transform: rotate(2.5deg);
+    transition: transform 0.3s ease;
+}
+
+.hazard-label-premium:hover {
+    transform: rotate(-1deg) scale(1.02);
+}
+
+.hazard-label-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(3px 5px 8px rgba(0, 0, 0, 0.95));
+}
+
+/* Contenedor del Botón de Engranaje y Botón de Acción */
+.enter-btn-wrapper {
+    position: relative;
+    width: 145px;
+    height: 145px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    top: calc(-4.8rem - 5px); /* Desplazado 5px más hacia arriba */
+}
+
+.enter-btn-gear {
+    position: absolute;
+    top: -5.5%; /* Bajamos ligeramente el engranaje para centrarlo con el botón rojo */
+    left: -7.5%;
+    width: 115%; /* Agrandado un 15% */
+    height: 115%;
+    object-fit: contain;
+    filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.85));
+    animation: gear-spin-slow 22s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+@keyframes gear-spin-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.splash-btn-premium {
+    position: relative;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    z-index: 2;
+    outline: none;
+    transition: transform 0.12s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.enter-btn-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(2px 6px 8px rgba(0,0,0,0.9));
+    transition: filter 0.12s ease;
+}
+
+/* Interacción del botón */
+.enter-btn-wrapper:hover .enter-btn-gear {
+    animation: gear-spin-slow 6s linear infinite; /* Acelerar engranaje al hacer hover */
+}
+
+.splash-btn-premium:hover {
+    transform: scale(1.04);
+}
+
+.splash-btn-premium:hover .enter-btn-img {
+    filter: drop-shadow(0px 8px 16px rgba(255, 0, 0, 0.38)) drop-shadow(2px 6px 8px rgba(0,0,0,0.95));
+}
+
+.splash-btn-premium:active {
+    transform: scale(0.95) translateY(4px);
+}
+
+.splash-btn-premium:active .enter-btn-img {
+    filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.95));
+}
+
+.splash-btn-premium:focus-visible {
+    box-shadow: 0 0 0 3px var(--neon-yellow);
 }
 
 /* Animación CRT de apagado de pantalla */

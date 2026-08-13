@@ -24,28 +24,29 @@
         <div class="crt-noise" aria-hidden="true"></div>
         <div class="crt-lines" aria-hidden="true"></div>
         
-        <div class="splash-content">
-            <!-- Letrero parpadeante neón de taller -->
-            <div class="workshop-sign">
-                <span class="sign-flicker-slow">TALLER</span>
-                <br>
-                <span class="sign-flicker-fast">LA PERLITA</span>
-            </div>
+        <!-- Placa metálica central -->
+        <div class="splash-plate-wrapper">
+            <img src="placa_portada.png" class="splash-plate-bg" alt="" aria-hidden="true">
             
-            <!-- Etiqueta de advertencia industrial con tornillos -->
-            <div class="hazard-label">
-                <img src="Tornillo - 1.png" class="screw-hazard screw-hazard-tl" alt="" aria-hidden="true">
-                <img src="Tornillo - 2.png" class="screw-hazard screw-hazard-tr" alt="" aria-hidden="true">
-                <img src="Tornillo - 3.png" class="screw-hazard screw-hazard-bl" alt="" aria-hidden="true">
-                <img src="Tornillo - 4.png" class="screw-hazard screw-hazard-br" alt="" aria-hidden="true">
-                <span class="hazard-icon">⚠️</span> CUIDADO CON EL PERRO
+            <div class="splash-content-premium">
+                <!-- Logotipo neón fotorrealista -->
+                <div class="workshop-neon-logo">
+                    <img src="neon_taller.png" alt="Taller La Perlita" class="neon-logo-img sign-flicker-slow">
+                </div>
+                
+                <!-- Letrero de advertencia -->
+                <div class="hazard-label-premium">
+                    <img src="letrero_cuidado.png" alt="Cuidado con el perro" class="hazard-label-img">
+                </div>
+                
+                <!-- Botón de engranaje y botón interactivo -->
+                <div class="enter-btn-wrapper">
+                    <img src="engranaje_portada.png" class="enter-btn-gear" alt="" aria-hidden="true">
+                    <button id="btn-enter" class="splash-btn-premium" onclick="startApp()" aria-label="Entrar a la ficha de Bruto">
+                        <img src="boton_entrar.png" alt="Entrar" class="enter-btn-img">
+                    </button>
+                </div>
             </div>
-            
-            <!-- Botón de encendido analógico Engine Start/Stop -->
-            <button id="btn-enter" class="splash-btn engine-start-btn" onclick="startApp()" aria-label="Entrar a la ficha de Bruto">
-                <span class="btn-ring"></span>
-                <span class="btn-text">ENGINE<br>START</span>
-            </button>
         </div>
     </div>
 
